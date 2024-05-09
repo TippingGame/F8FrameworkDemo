@@ -1,0 +1,29 @@
+ManifestFileVersion: 0
+CRC: 3274802975
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: e1a259ff434dfa25e4367ab9fde6cd4d
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 795893c1f35def1f001e034a8b406737
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/AssetBundles/Prefabs/tree_2.prefab
+Dependencies: []

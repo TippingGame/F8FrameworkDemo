@@ -1,0 +1,22 @@
+ManifestFileVersion: 0
+CRC: 2261243522
+AssetBundleManifest:
+  AssetBundleInfos:
+    Info_0:
+      Name: mapdata/quadtreedata
+      Dependencies: {}
+    Info_1:
+      Name: prefabs/tree_1
+      Dependencies: {}
+    Info_2:
+      Name: prefabs/tree_2
+      Dependencies: {}
+    Info_3:
+      Name: config/binconfigdata/localizedstrings
+      Dependencies: {}
+    Info_4:
+      Name: config/binconfigdata/sheet1
+      Dependencies: {}
+    Info_5:
+      Name: config/binconfigdata/sheet2
+      Dependencies: {}
