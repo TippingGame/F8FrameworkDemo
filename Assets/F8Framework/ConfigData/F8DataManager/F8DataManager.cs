@@ -20,6 +20,8 @@ namespace F8Framework.Core
 		private Sheet1 p_Sheet1;
 		private Sheet2 p_Sheet2;
 		private LocalizedStrings p_LocalizedStrings;
+		private role p_role;
+		private item p_item;
 
 		public Sheet1Item GetSheet1ByID(Int32 id)
 		{
@@ -60,6 +62,32 @@ namespace F8Framework.Core
 			return p_LocalizedStrings.Dict;
 		}
 
+		public roleItem GetroleByID(Int32 id)
+		{
+			roleItem t = null;
+			p_role.Dict.TryGetValue(id, out t);
+			if (t == null) LogF8.LogError("找不到id： " + id + " ，配置表： role");
+			return t;
+		}
+
+		public Dictionary<int, roleItem> Getrole()
+		{
+			return p_role.Dict;
+		}
+
+		public itemItem GetitemByID(Int32 id)
+		{
+			itemItem t = null;
+			p_item.Dict.TryGetValue(id, out t);
+			if (t == null) LogF8.LogError("找不到id： " + id + " ，配置表： item");
+			return t;
+		}
+
+		public Dictionary<int, itemItem> Getitem()
+		{
+			return p_item.Dict;
+		}
+
 		public void LoadLocalizedStrings()
 		{
 			p_LocalizedStrings = Load<LocalizedStrings>("LocalizedStrings") as LocalizedStrings;
@@ -81,6 +109,8 @@ namespace F8Framework.Core
 			p_Sheet1 = Load<Sheet1>("Sheet1") as Sheet1;
 			p_Sheet2 = Load<Sheet2>("Sheet2") as Sheet2;
 			p_LocalizedStrings = Load<LocalizedStrings>("LocalizedStrings") as LocalizedStrings;
+			p_role = Load<role>("role") as role;
+			p_item = Load<item>("item") as item;
 		}
 
 		public void RuntimeLoadAll(Dictionary<String, System.Object> objs)
@@ -88,6 +118,8 @@ namespace F8Framework.Core
 			p_Sheet1 = objs["Sheet1"] as Sheet1;
 			p_Sheet2 = objs["Sheet2"] as Sheet2;
 			p_LocalizedStrings = objs["LocalizedStrings"] as LocalizedStrings;
+			p_role = objs["role"] as role;
+			p_item = objs["item"] as item;
 		}
 
 		public IEnumerable LoadAllAsync()
@@ -95,6 +127,8 @@ namespace F8Framework.Core
 			yield return LoadAsync<Sheet1>("Sheet1", result => p_Sheet1 = result as Sheet1);
 			yield return LoadAsync<Sheet2>("Sheet2", result => p_Sheet2 = result as Sheet2);
 			yield return LoadAsync<LocalizedStrings>("LocalizedStrings", result => p_LocalizedStrings = result as LocalizedStrings);
+			yield return LoadAsync<role>("role", result => p_role = result as role);
+			yield return LoadAsync<item>("item", result => p_item = result as item);
 		}
 
 		public void LoadAllAsyncCallback(Action onLoadComplete)
@@ -107,6 +141,8 @@ namespace F8Framework.Core
 			yield return LoadAsync<Sheet1>("Sheet1", result => p_Sheet1 = result as Sheet1);
 			yield return LoadAsync<Sheet2>("Sheet2", result => p_Sheet2 = result as Sheet2);
 			yield return LoadAsync<LocalizedStrings>("LocalizedStrings", result => p_LocalizedStrings = result as LocalizedStrings);
+			yield return LoadAsync<role>("role", result => p_role = result as role);
+			yield return LoadAsync<item>("item", result => p_item = result as item);
 			onLoadComplete?.Invoke();
 		}
 

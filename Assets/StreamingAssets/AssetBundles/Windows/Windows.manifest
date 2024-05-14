@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2261243522
+CRC: 1893450853
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -12,11 +12,17 @@ AssetBundleManifest:
       Name: prefabs/tree_2
       Dependencies: {}
     Info_3:
-      Name: config/binconfigdata/localizedstrings
+      Name: config/binconfigdata/item
       Dependencies: {}
     Info_4:
-      Name: config/binconfigdata/sheet1
+      Name: config/binconfigdata/localizedstrings
       Dependencies: {}
     Info_5:
+      Name: config/binconfigdata/role
+      Dependencies: {}
+    Info_6:
+      Name: config/binconfigdata/sheet1
+      Dependencies: {}
+    Info_7:
       Name: config/binconfigdata/sheet2
       Dependencies: {}

@@ -43,6 +43,12 @@ namespace DemoLauncher
         // 开始游戏
         public void StartGame()
         {
+            FF8.Config.LoadAll();
+            
+            ReadExcel.Instance.LoadAllExcelData();
+            
+            LogF8.Log(FF8.Config.GetroleByID(1).name);
+            
             SceneManager.LoadScene("Main");
         }
 
