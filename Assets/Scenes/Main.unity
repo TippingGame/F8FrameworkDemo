@@ -8054,6 +8054,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Chara_06
       objectReference: {fileID: 0}
+    - target: {fileID: 1837153500598690, guid: e333f712e0f4cd54694dff55e08610dc, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4394043916320050, guid: e333f712e0f4cd54694dff55e08610dc, type: 3}
       propertyPath: m_RootOrder
       value: 0

@@ -1,3 +1,4 @@
+using System;
 using F8Framework.Core;
 using UnityEngine;
 
@@ -8,6 +9,15 @@ namespace Demo
       [SerializeField] float speed = 1f;
 
       public Transform playerRole;
+
+      private void Start()
+      {
+         string name = FF8.Config.GetroleByID(GameDataModule.Instance.RoleId).name;
+         
+         Destroy(playerRole.gameObject);
+         
+         playerRole = Instantiate(FF8.Asset.Load<GameObject>(name), transform).transform;
+      }
 
       private void Update()
       {

@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Collections.Generic;
 using F8Framework.Core;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -40,6 +41,11 @@ namespace DemoLauncher
             yield break;
         }
 
+        private Dictionary<int, UIConfig> _configs = new Dictionary<int, UIConfig>
+        {
+            { 1, new UIConfig(LayerType.UI, "UISelectRole") }
+        };
+        
         // 开始游戏
         public void StartGame()
         {
@@ -49,7 +55,16 @@ namespace DemoLauncher
             
             LogF8.Log(FF8.Config.GetroleByID(1).name);
             
-            SceneManager.LoadScene("Main");
+            // 加载文件夹内资产
+            FF8.Asset.LoadDirAsync("Role_Textures", () =>
+            {
+                // 初始化
+                FF8.UI.Initialize(_configs);
+            
+                FF8.UI.Open(1);
+            });
+
+            // SceneManager.LoadScene("Main");
         }
 
         void Update()

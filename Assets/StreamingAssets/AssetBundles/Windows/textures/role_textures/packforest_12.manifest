@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 3690718097
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 58b2aa686f37a12d9d1422f94ff3965a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 923768aebf385ad86f7762daa8034951
+HashAppended: 0
+ClassTypes:
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/AssetBundles/Textures/Role_Textures/PackForest_12.png
+Dependencies: []

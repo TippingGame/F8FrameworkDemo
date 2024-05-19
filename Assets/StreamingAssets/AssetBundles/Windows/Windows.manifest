@@ -1,28 +1,165 @@
 ManifestFileVersion: 0
-CRC: 1893450853
+CRC: 2985858012
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
-      Name: mapdata/quadtreedata
+      Name: textures/role_textures/packforest_3
       Dependencies: {}
     Info_1:
-      Name: prefabs/tree_1
+      Name: textures/role_textures/packforest_10
       Dependencies: {}
     Info_2:
-      Name: prefabs/tree_2
+      Name: prefabs/tree_1
       Dependencies: {}
     Info_3:
-      Name: config/binconfigdata/item
+      Name: textures/role_textures/packforest_6
       Dependencies: {}
     Info_4:
-      Name: config/binconfigdata/localizedstrings
+      Name: textures/role_textures/packforest_13
       Dependencies: {}
     Info_5:
-      Name: config/binconfigdata/role
-      Dependencies: {}
+      Name: atlas/role_atlas
+      Dependencies:
+        Dependency_0: textures/role_textures/packforest_3
+        Dependency_1: textures/role_textures/packforest_10
+        Dependency_2: textures/role_textures/packforest_6
+        Dependency_3: textures/role_textures/packforest_13
+        Dependency_4: textures/role_textures/packforest_9
+        Dependency_5: textures/role_textures/packforest_2
+        Dependency_6: textures/role_textures/packforest_1
+        Dependency_7: textures/role_textures/packforest_5
+        Dependency_8: textures/role_textures/packforest_12
+        Dependency_9: textures/role_textures/packforest_8
+        Dependency_10: textures/role_textures/packforest_15
+        Dependency_11: textures/role_textures/packforest_0
+        Dependency_12: textures/role_textures/packforest_4
+        Dependency_13: textures/role_textures/packforest_11
+        Dependency_14: textures/role_textures/packforest_7
+        Dependency_15: textures/role_textures/packforest_14
     Info_6:
-      Name: config/binconfigdata/sheet1
+      Name: textures/role_textures/packforest_9
       Dependencies: {}
     Info_7:
+      Name: textures/role_textures/packforest_2
+      Dependencies: {}
+    Info_8:
+      Name: textures/role_textures/packforest_1
+      Dependencies: {}
+    Info_9:
+      Name: textures/role_textures/packforest_5
+      Dependencies: {}
+    Info_10:
+      Name: textures/role_textures/packforest_12
+      Dependencies: {}
+    Info_11:
+      Name: textures/role_textures/packforest_8
+      Dependencies: {}
+    Info_12:
+      Name: mapdata/quadtreedata
+      Dependencies: {}
+    Info_13:
+      Name: textures/role_textures/packforest_15
+      Dependencies: {}
+    Info_14:
+      Name: textures/role_textures/packforest_0
+      Dependencies: {}
+    Info_15:
+      Name: ui/uiselectrole
+      Dependencies: {}
+    Info_16:
+      Name: textures/role_textures/packforest_4
+      Dependencies: {}
+    Info_17:
+      Name: textures/role_textures/packforest_11
+      Dependencies: {}
+    Info_18:
+      Name: prefabs/tree_2
+      Dependencies: {}
+    Info_19:
+      Name: textures/role_textures/packforest_7
+      Dependencies: {}
+    Info_20:
+      Name: textures/role_textures/packforest_14
+      Dependencies: {}
+    Info_21:
+      Name: textures/packforest01
+      Dependencies: {}
+    Info_22:
+      Name: config/binconfigdata/item
+      Dependencies: {}
+    Info_23:
+      Name: config/binconfigdata/localizedstrings
+      Dependencies: {}
+    Info_24:
+      Name: config/binconfigdata/role
+      Dependencies: {}
+    Info_25:
+      Name: config/binconfigdata/sheet1
+      Dependencies: {}
+    Info_26:
       Name: config/binconfigdata/sheet2
       Dependencies: {}
+    Info_27:
+      Name: prefabs/role_prefabs/chara_00
+      Dependencies:
+        Dependency_0: textures/packforest01
+    Info_28:
+      Name: prefabs/role_prefabs/chara_01
+      Dependencies:
+        Dependency_0: textures/packforest01
+    Info_29:
+      Name: prefabs/role_prefabs/chara_02
+      Dependencies:
+        Dependency_0: textures/packforest01
+    Info_30:
+      Name: prefabs/role_prefabs/chara_03
+      Dependencies:
+        Dependency_0: textures/packforest01
+    Info_31:
+      Name: prefabs/role_prefabs/chara_04
+      Dependencies:
+        Dependency_0: textures/packforest01
+    Info_32:
+      Name: prefabs/role_prefabs/chara_05
+      Dependencies:
+        Dependency_0: textures/packforest01
+    Info_33:
+      Name: prefabs/role_prefabs/chara_06
+      Dependencies:
+        Dependency_0: textures/packforest01
+    Info_34:
+      Name: prefabs/role_prefabs/chara_07
+      Dependencies:
+        Dependency_0: textures/packforest01
+    Info_35:
+      Name: prefabs/role_prefabs/chara_08
+      Dependencies:
+        Dependency_0: textures/packforest01
+    Info_36:
+      Name: prefabs/role_prefabs/chara_09
+      Dependencies:
+        Dependency_0: textures/packforest01
+    Info_37:
+      Name: prefabs/role_prefabs/chara_10
+      Dependencies:
+        Dependency_0: textures/packforest01
+    Info_38:
+      Name: prefabs/role_prefabs/chara_11
+      Dependencies:
+        Dependency_0: textures/packforest01
+    Info_39:
+      Name: prefabs/role_prefabs/chara_12
+      Dependencies:
+        Dependency_0: textures/packforest01
+    Info_40:
+      Name: prefabs/role_prefabs/chara_13
+      Dependencies:
+        Dependency_0: textures/packforest01
+    Info_41:
+      Name: prefabs/role_prefabs/chara_14
+      Dependencies:
+        Dependency_0: textures/packforest01
+    Info_42:
+      Name: prefabs/role_prefabs/chara_15
+      Dependencies:
+        Dependency_0: textures/packforest01

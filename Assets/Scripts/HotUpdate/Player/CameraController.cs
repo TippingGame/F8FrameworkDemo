@@ -13,7 +13,8 @@ namespace Demo
  
         //相机的速度
         [SerializeField] private float smoothing = 3;
-        private new Camera camera;
+        
+        private Camera camera;
         // Use this for initialization
         void Start ()
         {
