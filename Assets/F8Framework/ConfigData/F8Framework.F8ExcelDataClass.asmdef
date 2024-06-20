@@ -1,0 +1,16 @@
+{
+    "name": "F8Framework.F8ExcelDataClass",
+    "references": [
+        "F8Framework.Core",
+        "LitJson"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

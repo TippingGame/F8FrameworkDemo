@@ -14,11 +14,11 @@ namespace Demo
         //相机的速度
         [SerializeField] private float smoothing = 3;
         
-        private Camera camera;
+        private Camera _camera;
         // Use this for initialization
         void Start ()
         {
-            camera = GetComponent<Camera>();
+            _camera = GetComponent<Camera>();
             transform.position = new Vector3(player.position.x, player.position.y ,transform.position.z);
             offset = transform.position - player.position;
         }
@@ -36,9 +36,9 @@ namespace Demo
             Gizmos.color = Color.yellow;
             Matrix4x4 temp = Gizmos.matrix;
             Gizmos.matrix = Matrix4x4.TRS(transform.position, transform.rotation, Vector3.one);
-            if (camera != null)
+            if (_camera != null)
             {
-                Gizmos.DrawFrustum(Vector3.zero, camera.fieldOfView, camera.farClipPlane, camera.nearClipPlane, camera.aspect);
+                Gizmos.DrawFrustum(Vector3.zero, _camera.fieldOfView, _camera.farClipPlane, _camera.nearClipPlane, _camera.aspect);
             }
             Gizmos.matrix = temp;
         }
