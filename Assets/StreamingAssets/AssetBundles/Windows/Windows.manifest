@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 1573005295
+CRC: 957084840
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -149,17 +149,20 @@ AssetBundleManifest:
       Dependencies:
         Dependency_0: textures/packforest01
     Info_38:
-      Name: config/binconfigdata/item
+      Name: atlas/isometricspriteatlas
       Dependencies: {}
     Info_39:
-      Name: config/binconfigdata/localizedstrings
+      Name: config/binconfigdata/item
       Dependencies: {}
     Info_40:
-      Name: config/binconfigdata/role
+      Name: config/binconfigdata/localizedstrings
       Dependencies: {}
     Info_41:
-      Name: config/binconfigdata/sheet1
+      Name: config/binconfigdata/role
       Dependencies: {}
     Info_42:
+      Name: config/binconfigdata/sheet1
+      Dependencies: {}
+    Info_43:
       Name: config/binconfigdata/sheet2
       Dependencies: {}

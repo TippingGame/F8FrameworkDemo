@@ -1,0 +1,21 @@
+ManifestFileVersion: 0
+CRC: 2846696049
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 660970bfa3de2b1bd37806996e7df321
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c29c357128feff56790ec9816c4fc93d
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/AssetBundles/Atlas/IsometricSpriteAtlas.spriteatlasv2
+Dependencies: []
