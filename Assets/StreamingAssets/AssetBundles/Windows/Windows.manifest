@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 957084840
+CRC: 2311772964
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -152,17 +152,32 @@ AssetBundleManifest:
       Name: atlas/isometricspriteatlas
       Dependencies: {}
     Info_39:
-      Name: config/binconfigdata/item
+      Name: audio/02b town theme
       Dependencies: {}
     Info_40:
-      Name: config/binconfigdata/localizedstrings
+      Name: audio/electronic high shot
       Dependencies: {}
     Info_41:
-      Name: config/binconfigdata/role
+      Name: audio/af_voh_billy_attack_02
       Dependencies: {}
     Info_42:
-      Name: config/binconfigdata/sheet1
+      Name: prefabs/one shot audio
       Dependencies: {}
     Info_43:
+      Name: audio/f8audiomixer
+      Dependencies: {}
+    Info_44:
+      Name: config/binconfigdata/item
+      Dependencies: {}
+    Info_45:
+      Name: config/binconfigdata/localizedstrings
+      Dependencies: {}
+    Info_46:
+      Name: config/binconfigdata/role
+      Dependencies: {}
+    Info_47:
+      Name: config/binconfigdata/sheet1
+      Dependencies: {}
+    Info_48:
       Name: config/binconfigdata/sheet2
       Dependencies: {}

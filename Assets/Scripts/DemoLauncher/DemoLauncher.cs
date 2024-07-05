@@ -4,6 +4,7 @@ using F8Framework.Core;
 using F8Framework.F8ExcelDataClass;
 using F8Framework.Launcher;
 using UnityEngine;
+using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
 namespace DemoLauncher
@@ -65,8 +66,10 @@ namespace DemoLauncher
             
                 FF8.UI.Open(1);
             });
-
-            // SceneManager.LoadScene("Main");
+            
+            FF8.Audio.SetAudioMixer(FF8.Asset.Load<AudioMixer>("F8AudioMixer"));
+            
+            FF8.Audio.PlayMusic("02b Town Theme", null, true);
         }
 
         void Update()

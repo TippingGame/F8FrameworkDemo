@@ -23,6 +23,7 @@ namespace Demo
       private void Update()
       {
          Move();
+         Attack();
       }
 
       private void Move()
@@ -44,6 +45,14 @@ namespace Demo
          }
          transform.Translate(x * Time.deltaTime * speed,
             y * Time.deltaTime * speed, 0, Space.World);
+      }
+
+      private void Attack()
+      {
+         if (FF8.Input.GetButtonDown(InputButtonType.MouseLeft) || FF8.Input.GetButtonDown(InputButtonType.MouseRight))
+         {
+            FF8.Audio.PlayAudioEffect3D("AF_VOH_Billy_Attack_02", true, this.transform.position);
+         }
       }
    }
 }

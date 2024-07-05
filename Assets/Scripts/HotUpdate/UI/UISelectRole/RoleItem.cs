@@ -31,6 +31,7 @@ public class RoleItem : BaseItem
     {
         ButtonLegacy_Button.onClick.AddListener(() =>
         {
+            FF8.Audio.PlayUISound("Electronic high shot");
             FF8.UI.Close(1, true);
             GameDataModule.Instance.RoleId = _index;
             SceneManager.LoadScene("Main");
