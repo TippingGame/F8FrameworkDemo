@@ -3,6 +3,9 @@
 # Get latest from https://github.com/github/gitignore/blob/main/Unity.gitignore
 #
 /[Ll]ibrary/
+!/[Ll]ibrary/PackageCache/
+!/[Ll]ibrary/PackageCache/com.tippinggame.f8framework@50e20c6d0b/
+!/[Ll]ibrary/PackageCache/com.tippinggame.f8framework@50e20c6d0b/**
 /[Tt]emp/
 /[Oo]bj/
 /[Bb]uild/
