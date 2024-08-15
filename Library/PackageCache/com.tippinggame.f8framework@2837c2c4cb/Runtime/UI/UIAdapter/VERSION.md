@@ -1,1 +1,0 @@
-Unity-UI-Adapter 1.0.0
