@@ -52,6 +52,8 @@ namespace Demo
          if (FF8.Input.GetButtonDown(InputButtonType.MouseLeft) || FF8.Input.GetButtonDown(InputButtonType.MouseRight))
          {
             FF8.Audio.PlayAudioEffect3D("AF_VOH_Billy_Attack_02", true, this.transform.position);
+            
+            FF8.Message.DispatchEvent(GameDataModule.MessageEvent.SubHp);
          }
       }
    }

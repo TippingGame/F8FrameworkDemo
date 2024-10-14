@@ -22,7 +22,7 @@ namespace F8Framework.F8ExcelDataClass
 		private role p_role;
 		private item p_item;
 
-		public Sheet1Item GetSheet1ByID(Int32 id)
+		public Sheet1Item GetSheet1ByID(int id)
 		{
 			Sheet1Item t = null;
 			p_Sheet1.Dict.TryGetValue(id, out t);
@@ -35,7 +35,7 @@ namespace F8Framework.F8ExcelDataClass
 			return p_Sheet1.Dict;
 		}
 
-		public Sheet2Item GetSheet2ByID(Int32 id)
+		public Sheet2Item GetSheet2ByID(int id)
 		{
 			Sheet2Item t = null;
 			p_Sheet2.Dict.TryGetValue(id, out t);
@@ -48,7 +48,7 @@ namespace F8Framework.F8ExcelDataClass
 			return p_Sheet2.Dict;
 		}
 
-		public LocalizedStringsItem GetLocalizedStringsByID(Int32 id)
+		public LocalizedStringsItem GetLocalizedStringsByID(int id)
 		{
 			LocalizedStringsItem t = null;
 			p_LocalizedStrings.Dict.TryGetValue(id, out t);
@@ -61,7 +61,7 @@ namespace F8Framework.F8ExcelDataClass
 			return p_LocalizedStrings.Dict;
 		}
 
-		public roleItem GetroleByID(Int32 id)
+		public roleItem GetroleByID(int id)
 		{
 			roleItem t = null;
 			p_role.Dict.TryGetValue(id, out t);
@@ -74,7 +74,7 @@ namespace F8Framework.F8ExcelDataClass
 			return p_role.Dict;
 		}
 
-		public itemItem GetitemByID(Int32 id)
+		public itemItem GetitemByID(int id)
 		{
 			itemItem t = null;
 			p_item.Dict.TryGetValue(id, out t);

@@ -35,6 +35,7 @@ public class RoleItem : BaseItem
             FF8.UI.Close(1, true);
             GameDataModule.Instance.RoleId = _index;
             SceneManager.LoadScene("Main");
+            FF8.UI.Open(2);
         });
     }
     

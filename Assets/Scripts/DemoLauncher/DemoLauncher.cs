@@ -46,7 +46,8 @@ namespace DemoLauncher
 
         private Dictionary<int, UIConfig> _configs = new Dictionary<int, UIConfig>
         {
-            { 1, new UIConfig(LayerType.UI, "UISelectRole") }
+            { 1, new UIConfig(LayerType.UI, "UISelectRole") },
+            { 2, new UIConfig(LayerType.UI, "UIGameView") },
         };
         
         // 开始游戏
