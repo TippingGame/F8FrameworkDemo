@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -24,7 +25,8 @@ public class UIGameView : BaseView
             hps[i].gameObject.SetActive(hp > i);
         }
     }
-    
+
+    private int timeid = 0;
     // 参数传入
     protected override void OnAdded(int uiId, object[] args = null)
     {
@@ -33,6 +35,17 @@ public class UIGameView : BaseView
         {
             hps.Add(Instantiate(tf_hp_tf, tf_group_tf));
         }
+
+        int count = 0;
+        timeid = FF8.Timer.AddTimer(this, 1f, 0f, -1, () =>
+        {
+            count += 1;
+            TimeSpan timeSpan = TimeSpan.FromSeconds(count);
+            TextLegacy_TextLegacy.text = timeSpan.Minutes.ToString("D2") + ":" + timeSpan.Seconds.ToString("D2");
+        }, () =>
+        {
+            
+        });
     }
     
     // Start
@@ -61,7 +74,7 @@ public class UIGameView : BaseView
     // 删除之前
     protected override void OnBeforeRemove()
     {
-        
+        FF8.Timer.RemoveTimer(timeid);
     }
     
     // 删除
@@ -72,12 +85,14 @@ public class UIGameView : BaseView
     
     // 自动获取组件（自动生成，不能删除）
     [SerializeField] private Transform tf_group_tf;
+    [SerializeField] private Text TextLegacy_TextLegacy;
     [SerializeField] private Transform tf_hp_tf;
 
 #if UNITY_EDITOR
     protected override void SetComponents()
     {
         tf_group_tf = transform.Find("tf_group").GetComponent<Transform>();
+        TextLegacy_TextLegacy = transform.Find("Text (Legacy)").GetComponent<Text>();
         tf_hp_tf = transform.Find("tf_group/tf_hp").GetComponent<Transform>();
     }
 #endif
