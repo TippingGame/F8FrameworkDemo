@@ -24,6 +24,12 @@ public class UIGameView : BaseView
         {
             hps[i].gameObject.SetActive(hp > i);
         }
+
+        tf_group_tf.ScaleTween(Vector3.one * 2, 0.1f).SetOnComplete(
+            () =>
+            {
+                tf_group_tf.ScaleTween(Vector3.one, 0.25f);
+            });
     }
 
     private int timeid = 0;
