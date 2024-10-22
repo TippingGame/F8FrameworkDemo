@@ -3,14 +3,17 @@ Don't Edit it*/
 
 using System;
 using System.Collections.Generic;
+using UnityEngine.Scripting;
 
 namespace F8Framework.F8ExcelDataClass
 {
 	[Serializable]
 	public class roleItem
 	{
-	public int id;
-	public string name;
+		[Preserve]
+		public int id;
+		[Preserve]
+		public string name;
 	}
 	
 	[Serializable]

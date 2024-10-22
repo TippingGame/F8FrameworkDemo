@@ -1,0 +1,25 @@
+{
+    "name": "F8Framework.Core",
+    "rootNamespace": "",
+    "references": [
+        "Unity.TextMeshPro",
+        "Unity.Timeline",
+        "ICSharpCode.SharpZipLib",
+        "Excel",
+        "LitJson",
+        "MessagePack",
+        "kcp2k",
+        "Telepathy",
+        "SimpleWebTransport",
+        "HybridCLR.Runtime"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
