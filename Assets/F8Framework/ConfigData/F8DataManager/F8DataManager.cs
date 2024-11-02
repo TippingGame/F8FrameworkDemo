@@ -19,9 +19,9 @@ namespace F8Framework.F8ExcelDataClass
 	{
 		private Sheet1 p_Sheet1;
 		private Sheet2 p_Sheet2;
+		private item p_item;
 		private LocalizedStrings p_LocalizedStrings;
 		private role p_role;
-		private item p_item;
 
 		[Preserve]
 		public Sheet1Item GetSheet1ByID(int id)
@@ -51,6 +51,21 @@ namespace F8Framework.F8ExcelDataClass
 		public Dictionary<int, Sheet2Item> GetSheet2()
 		{
 			return p_Sheet2.Dict;
+		}
+
+		[Preserve]
+		public itemItem GetitemByID(int id)
+		{
+			itemItem t = null;
+			p_item.Dict.TryGetValue(id, out t);
+			if (t == null) LogF8.LogError("找不到id： " + id + " ，配置表： item");
+			return t;
+		}
+
+		[Preserve]
+		public Dictionary<int, itemItem> Getitem()
+		{
+			return p_item.Dict;
 		}
 
 		[Preserve]
@@ -84,21 +99,6 @@ namespace F8Framework.F8ExcelDataClass
 		}
 
 		[Preserve]
-		public itemItem GetitemByID(int id)
-		{
-			itemItem t = null;
-			p_item.Dict.TryGetValue(id, out t);
-			if (t == null) LogF8.LogError("找不到id： " + id + " ，配置表： item");
-			return t;
-		}
-
-		[Preserve]
-		public Dictionary<int, itemItem> Getitem()
-		{
-			return p_item.Dict;
-		}
-
-		[Preserve]
 		public void LoadLocalizedStrings()
 		{
 			p_LocalizedStrings = Load<LocalizedStrings>("LocalizedStrings") as LocalizedStrings;
@@ -122,9 +122,9 @@ namespace F8Framework.F8ExcelDataClass
 		{
 			p_Sheet1 = Load<Sheet1>("Sheet1") as Sheet1;
 			p_Sheet2 = Load<Sheet2>("Sheet2") as Sheet2;
+			p_item = Load<item>("item") as item;
 			p_LocalizedStrings = Load<LocalizedStrings>("LocalizedStrings") as LocalizedStrings;
 			p_role = Load<role>("role") as role;
-			p_item = Load<item>("item") as item;
 		}
 
 		[Preserve]
@@ -132,9 +132,9 @@ namespace F8Framework.F8ExcelDataClass
 		{
 			p_Sheet1 = objs["Sheet1"] as Sheet1;
 			p_Sheet2 = objs["Sheet2"] as Sheet2;
+			p_item = objs["item"] as item;
 			p_LocalizedStrings = objs["LocalizedStrings"] as LocalizedStrings;
 			p_role = objs["role"] as role;
-			p_item = objs["item"] as item;
 		}
 
 		[Preserve]
@@ -142,9 +142,9 @@ namespace F8Framework.F8ExcelDataClass
 		{
 			yield return LoadAsync<Sheet1>("Sheet1", result => p_Sheet1 = result as Sheet1);
 			yield return LoadAsync<Sheet2>("Sheet2", result => p_Sheet2 = result as Sheet2);
+			yield return LoadAsync<item>("item", result => p_item = result as item);
 			yield return LoadAsync<LocalizedStrings>("LocalizedStrings", result => p_LocalizedStrings = result as LocalizedStrings);
 			yield return LoadAsync<role>("role", result => p_role = result as role);
-			yield return LoadAsync<item>("item", result => p_item = result as item);
 		}
 
 		[Preserve]
@@ -158,9 +158,9 @@ namespace F8Framework.F8ExcelDataClass
 		{
 			yield return LoadAsync<Sheet1>("Sheet1", result => p_Sheet1 = result as Sheet1);
 			yield return LoadAsync<Sheet2>("Sheet2", result => p_Sheet2 = result as Sheet2);
+			yield return LoadAsync<item>("item", result => p_item = result as item);
 			yield return LoadAsync<LocalizedStrings>("LocalizedStrings", result => p_LocalizedStrings = result as LocalizedStrings);
 			yield return LoadAsync<role>("role", result => p_role = result as role);
-			yield return LoadAsync<item>("item", result => p_item = result as item);
 			onLoadComplete?.Invoke();
 		}
 

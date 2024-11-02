@@ -1,0 +1,29 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using F8Framework.Core;
+
+    #ROOTNAMESPACEBEGIN#
+public class #SCRIPTNAME# : StaticModule
+{
+    public static #SCRIPTNAME# Instance => GetInstance<#SCRIPTNAME#>();
+    
+    // 初始化Center
+    protected override void Init()
+    {
+        #NOTRIM#
+    }
+
+    // 进入游戏
+    public override void OnEnterGame()
+    {
+        #NOTRIM#
+    }
+
+    // 退出游戏
+    public override void OnQuitGame()
+    {
+        #NOTRIM#
+    }
+}
+#ROOTNAMESPACEEND#
