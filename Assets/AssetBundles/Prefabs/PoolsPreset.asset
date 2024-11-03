@@ -1,0 +1,35 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1675ca1885e647e88c4e999d1164b08c, type: 3}
+  m_Name: PoolsPreset
+  m_EditorClassIdentifier: 
+  _poolPresets:
+  - _name: tree_1
+    _enabled: 1
+    _prefab: {fileID: 3926925804129511611, guid: e710e8bee2146df458702cae1063fbec, type: 3}
+    _behaviourOnCapacityReached: 2
+    _despawnType: 2
+    _callbacksType: 1
+    _capacity: 128
+    _preloadSize: 64
+    _dontDestroyOnLoad: 0
+    _warnings: 0
+  - _name: tree_2
+    _enabled: 1
+    _prefab: {fileID: 1292710068929571838, guid: d9f55c65727f75b4ea9c27f1c840cf1e, type: 3}
+    _behaviourOnCapacityReached: 2
+    _despawnType: 2
+    _callbacksType: 1
+    _capacity: 128
+    _preloadSize: 64
+    _dontDestroyOnLoad: 0
+    _warnings: 0

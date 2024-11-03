@@ -46,27 +46,28 @@ namespace Demo
             Instance = this;
         }
 
-        private void Start()
+        IEnumerator Start()
         {
             player.SetActive(true);
-                
+
+            yield return FF8.Asset.LoadAsyncCoroutine<PoolsPreset>("PoolsPreset");
+            FF8.GameObjectPool.InstallPools(FF8.Asset.GetAssetObject<PoolsPreset>("PoolsPreset"));
+            
             tree = new Tree(bounds, true);
-            FF8.Asset.LoadAsync<TextAsset>("QuadTreeData", (res) =>
+            yield return FF8.Asset.LoadAsyncCoroutine<TextAsset>("QuadTreeData");
+            string jsonStr = FF8.Asset.GetAssetObject<TextAsset>("QuadTreeData").text;
+            jsonDatas = JsonUtility.FromJson<ObjDataContainer>(jsonStr).objDatas;
+            for (int i = 0; i < jsonDatas.Length; i++)
             {
-                string jsonStr = res.text;
-                jsonDatas = JsonUtility.FromJson<ObjDataContainer>(jsonStr).objDatas;
-                for (int i = 0; i < jsonDatas.Length; i++)
-                {
-                    jsonDatas[i].uid = i;
-                    ObjData objData = new ObjData(jsonDatas[i].resPath, jsonDatas[i].pos, jsonDatas[i].rot, jsonDatas[i].scale, jsonDatas[i].size,jsonDatas[i].uid);
-                    tree.InsertObjData(objData);
-                }
-            });
+                jsonDatas[i].uid = i;
+                ObjData objData = new ObjData(jsonDatas[i].resPath, jsonDatas[i].pos, jsonDatas[i].rot, jsonDatas[i].scale, jsonDatas[i].size,jsonDatas[i].uid);
+                tree.InsertObjData(objData);
+            }
         }
 
         private void Update()
         {
-            tree.Inside(cam);
+            tree?.Inside(cam);
         }
         
         private void OnDrawGizmos()
@@ -87,7 +88,7 @@ namespace Demo
             {
                 return;
             }
-            StartCoroutine(LoadObj(objData));
+            LoadObj(objData);
         }
 
         public void Unload(int uid)
@@ -100,32 +101,27 @@ namespace Demo
             {
                 if (activeSceneObjDatas[unloadUids[i]].status == SceneObjStatus.Loaded)
                 {
-                    Destroy(activeSceneObjDatas[unloadUids[i]].obj);
+                    FF8.GameObjectPool.Despawn(activeSceneObjDatas[unloadUids[i]].obj);
                     activeSceneObjDatas.Remove(unloadUids[i]);
                     unloadUids.RemoveAt(i--);
                 }
             }
         }
 
-        private IEnumerator LoadObj(ObjData obj)
+        private void LoadObj(ObjData obj)
         {
             SceneObjData sceneObjData = new SceneObjData(obj);
             sceneObjData.status = SceneObjStatus.Loading;
             activeSceneObjDatas.Add(obj.uid, sceneObjData);
-            GameObject resObj = null;
-
-            var load = FF8.Asset.LoadAsyncCoroutine<GameObject>(obj.resPath);
-            yield return load;
-            resObj = FF8.Asset.GetAssetObject<GameObject>(obj.resPath);
-            yield return new WaitUntil(() => resObj != null);
 
             sceneObjData.status = SceneObjStatus.Loaded;
-            SetObjTransfrom(resObj, sceneObjData);
+            SetObjTransfrom(obj.resPath, sceneObjData);
         }
 
-        private void SetObjTransfrom(GameObject prefab, SceneObjData sceneObj)
+        private void SetObjTransfrom(string prefabName, SceneObjData sceneObj)
         {
-            sceneObj.obj = Instantiate(prefab, transform);
+            sceneObj.obj = FF8.GameObjectPool.Spawn(prefabName);
+            sceneObj.obj.transform.SetParent(transform);
             sceneObj.obj.transform.position = sceneObj.objData.pos;
             sceneObj.obj.transform.rotation = sceneObj.objData.rot;
             sceneObj.obj.transform.localScale = sceneObj.objData.scale;
