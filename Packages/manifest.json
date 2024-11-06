@@ -1,6 +1,5 @@
 {
   "dependencies": {
-    "com.tippinggame.f8framework": "https://github.com/TippingGame/F8Framework.git",
     "com.unity.2d.sprite": "1.0.0",
     "com.unity.2d.tilemap": "1.0.0",
     "com.unity.collab-proxy": "1.17.7",
