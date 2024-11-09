@@ -220,7 +220,7 @@ namespace F8Framework.Core
                     {
                         return o;
                     }
-                    LogF8.LogError("获取不到资产AssetObject");
+                    LogF8.LogError("获取不到资产或者类型错误！");
                 }
 
                 return null;
@@ -272,7 +272,7 @@ namespace F8Framework.Core
                     {
                         return o;
                     }
-                    LogF8.LogError("获取不到资产AssetObject");
+                    LogF8.LogError("获取不到资产或者类型错误！");
                 }
 
                 return null;
@@ -322,7 +322,7 @@ namespace F8Framework.Core
                     {
                         return o;
                     }
-                    LogF8.LogError("获取不到资产AssetObject");
+                    LogF8.LogError("获取不到资产！");
                 }
 
                 return null;
@@ -675,7 +675,6 @@ namespace F8Framework.Core
                     if (ab == null || ab.AssetBundleContent == null || ab.GetDependentNamesLoadFinished() < ab.AddDependentNames())
                     {
                         yield return AssetBundleManager.Instance.LoadAsyncCoroutine(assetName, typeof(T), info);
-                        yield return AssetBundleManager.Instance.GetAssetObject<T>(info.AssetBundlePath, info.AssetPath[0]);
                     }
                     else
                     {
@@ -699,7 +698,7 @@ namespace F8Framework.Core
             /// <param name="assetName">资产路径字符串。</param>
             /// <param name="assetType">目标资产类型。</param>
             /// <param name="mode">访问模式。</param>
-            public IEnumerator LoadAsyncCoroutine(string assetName, System.Type assetType, AssetAccessMode mode = AssetAccessMode.UNKNOWN)
+            public IEnumerator LoadAsyncCoroutine(string assetName, System.Type assetType = default, AssetAccessMode mode = AssetAccessMode.UNKNOWN)
             {
                 AssetInfo info = GetAssetInfo(assetName, mode);
                 if (!IsLegal(ref info))
@@ -743,7 +742,6 @@ namespace F8Framework.Core
                     if (ab == null || ab.AssetBundleContent == null || ab.GetDependentNamesLoadFinished() < ab.AddDependentNames())
                     {
                         yield return AssetBundleManager.Instance.LoadAsyncCoroutine(assetName, assetType, info);
-                        yield return AssetBundleManager.Instance.GetAssetObject(info.AssetBundlePath, info.AssetPath[0], assetType);
                     }
                     else
                     {

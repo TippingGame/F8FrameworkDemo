@@ -321,8 +321,14 @@ namespace F8Framework.Core
                 assetBundleExpandState = LoaderState.WORKING;
                 for (int i = 0; i < assetPaths.Count; i++)
                 {
-                    Util.Unity.StartCoroutine(LoadAssetObjectAsyncCoroutine(assetPaths[i],
-                        i == assetPaths.Count - 1 ? assetType : default));
+                    if (i == assetPaths.Count - 1)
+                    {
+                        LoadAssetObjectAsync(assetPaths[i], assetType, OnOneExpandCallBack);
+                    }
+                    else
+                    {
+                        LoadAssetObjectAsync(assetPaths[i], OnOneExpandCallBack);
+                    }
                 }
                 yield return new WaitUntil(() => ExpandProgress >= 1f);
             }
@@ -448,6 +454,7 @@ namespace F8Framework.Core
                 }
                 else
                 {
+                    LogF8.LogError("与输入的资产类型不一致：" + assetPath);
                     return null;
                 }
             }
@@ -551,6 +558,7 @@ namespace F8Framework.Core
                         }
                         else
                         {
+                            LogF8.LogError("与输入的资产类型不一致：" + assetPath);
                             End();
                         }
                     }
@@ -574,7 +582,7 @@ namespace F8Framework.Core
         {
             // 流化场景资产包不需要扩展，
             // 但必须通过UnityEngine进行访问。场景管理。场景管理器。
-            if (!assetBundleContent||
+            if (assetBundleContent == null ||
                 assetBundleContent.isStreamedSceneAssetBundle)
             {
                 End();
@@ -600,8 +608,10 @@ namespace F8Framework.Core
         {
             // 流化场景资产包不需要扩展，
             // 但必须通过UnityEngine进行访问。场景管理。场景管理器。
-            if (!assetBundleContent || assetBundleContent.isStreamedSceneAssetBundle)
+            if (assetBundleContent == null ||
+                assetBundleContent.isStreamedSceneAssetBundle)
             {
+                OnOneExpandCallBack();
                 yield break;
             }
             
@@ -612,7 +622,7 @@ namespace F8Framework.Core
 
             Object o = rq.asset;
             SetAssetObject(assetPath, o);
-            ++expandCount;
+            OnOneExpandCallBack(o);
         }
         
         /// <summary>
@@ -871,7 +881,7 @@ namespace F8Framework.Core
         /// 当一个展开回调时调用。
         /// </summary>
         /// <param name="o">传入的对象。</param>
-        private void OnOneExpandCallBack(Object o)
+        private void OnOneExpandCallBack(Object o = null)
         {
             ++expandCount;
             if (expandCount == assetPaths.Count)
@@ -894,6 +904,12 @@ namespace F8Framework.Core
             if (assetBundleContent)
             {
                 assetPaths.Clear();
+                // 流化场景资产包不需要加载AssetObject
+                if (assetBundleContent.isStreamedSceneAssetBundle)
+                {
+                    assetPaths.Add(string.Empty);
+                    return;
+                }
                 foreach (var assetName in assetBundleContent.GetAllAssetNames()) // 获取得到是小写：assets/assetbundles/prefabs/cube.prefab
                 {
                     assetPaths.Add(assetName);
@@ -927,6 +943,7 @@ namespace F8Framework.Core
             if (assetPath == null ||
                 obj == null)
             {
+                LogF8.LogError("加载资产对象Object为空，请检查类型和路径：" + assetPath);
                 return;
             }
 

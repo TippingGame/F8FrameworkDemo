@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2302047620
+CRC: 678293680
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -169,17 +169,23 @@ AssetBundleManifest:
         Dependency_0: prefabs/tree_2
         Dependency_1: prefabs/tree_1
     Info_44:
-      Name: config/binconfigdata/item
+      Name: textures/rpg_06_hp
       Dependencies: {}
     Info_45:
-      Name: config/binconfigdata/localizedstrings
+      Name: textures/rpg_08_skill
       Dependencies: {}
     Info_46:
-      Name: config/binconfigdata/role
+      Name: config/binconfigdata/item
       Dependencies: {}
     Info_47:
-      Name: config/binconfigdata/sheet1
+      Name: config/binconfigdata/localizedstrings
       Dependencies: {}
     Info_48:
+      Name: config/binconfigdata/role
+      Dependencies: {}
+    Info_49:
+      Name: config/binconfigdata/sheet1
+      Dependencies: {}
+    Info_50:
       Name: config/binconfigdata/sheet2
       Dependencies: {}
