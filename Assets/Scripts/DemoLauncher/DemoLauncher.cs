@@ -58,8 +58,7 @@ namespace DemoLauncher
             ReadExcel.Instance.LoadAllExcelData();
             
             LogF8.Log(FF8.Config.GetroleByID(1).name);
-
-            FF8.Asset.Load("Role_Atlas");
+            
             FF8.Asset.Load("IsometricSpriteAtlas");
             
             // 加载文件夹内资产
