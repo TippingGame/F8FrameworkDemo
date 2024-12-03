@@ -58,9 +58,11 @@ namespace DemoLauncher
         public void StartGame()
         {
             FF8.Config.LoadAll();
-            
+
+#if UNITY_EDITOR
             ReadExcel.Instance.LoadAllExcelData();
-            
+#endif
+
             LogF8.Log(FF8.Config.GetroleByID(1).name);
             
             FF8.Asset.Load("IsometricSpriteAtlas");
