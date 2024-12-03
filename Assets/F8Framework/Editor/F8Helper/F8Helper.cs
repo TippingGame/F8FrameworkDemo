@@ -22,32 +22,9 @@ namespace F8Framework.Core.Editor
         [MenuItem("开发工具/F8Run _F8")]
         public static void F8Run()
         {
-            CopyAndroidManifest();
             F8EditorPrefs.SetBool("compilationFinishedHotUpdateDll", true);
             F8EditorPrefs.SetBool("compilationFinishedBuildAB", true);
             LoadAllExcelData();
-        }
-
-        public static void CopyAndroidManifest()
-        {
-            if (!File.Exists(Application.dataPath + "/Plugins/Android/AndroidManifest.xml"))
-            {
-                FileTools.SafeCopyFile(
-                    FileTools.FormatToUnityPath(FileTools.TruncatePath(GetScriptPath(), 3)) +
-                    "/Runtime/SDKManager/Plugins_Android/AndroidManifest.xml",
-                    Application.dataPath + "/Plugins/Android/AndroidManifest.xml");
-                LogF8.Log("复制 AndroidManifest.xml 至 " + Application.dataPath + "/Plugins/Android");
-                AssetDatabase.Refresh();
-            }
-            if (!File.Exists(Application.dataPath + "/Plugins/Android/mainTemplate.gradle"))
-            {
-                FileTools.SafeCopyFile(
-                    FileTools.FormatToUnityPath(FileTools.TruncatePath(GetScriptPath(), 3)) +
-                    "/Runtime/SDKManager/Plugins_Android/mainTemplate.gradle",
-                    Application.dataPath + "/Plugins/Android/mainTemplate.gradle");
-                LogF8.Log("复制 mainTemplate.gradle 至 " + Application.dataPath + "/Plugins/Android");
-                AssetDatabase.Refresh();
-            }
         }
         
         [MenuItem("开发工具/生成并复制热更新Dll-F8")]
@@ -57,12 +34,7 @@ namespace F8Framework.Core.Editor
             // HybridCLR.Editor.Commands.PrebuildCommand.GenerateAll();
             // FileTools.SafeClearDir(Application.dataPath + "/AssetBundles/Code");
             // FileTools.CheckDirAndCreateWhenNeeded(Application.dataPath + "/AssetBundles/Code");
-            // List<string> hotUpdateDll = new List<string>()
-            // {
-            //     "F8Framework.F8ExcelDataClass", // 自行添加需要热更的程序集
-            //     "F8Framework.Launcher"
-            // };
-            // foreach (var dll in hotUpdateDll)
+            // foreach (var dll in HybridCLR.Editor.SettingsUtil.HotUpdateAssemblyNamesExcludePreserved) // 获取HybridCLR设置面板的dll名称
             // {
             //     FileTools.SafeCopyFile(
             //         HybridCLR.Editor.SettingsUtil.GetHotUpdateDllsOutputDirByTarget(EditorUserBuildSettings.activeBuildTarget) + "/" + dll + ".dll",

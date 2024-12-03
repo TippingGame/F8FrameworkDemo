@@ -17,12 +17,7 @@
         // HybridCLR.Editor.Commands.PrebuildCommand.GenerateAll();
         // FileTools.SafeClearDir(Application.dataPath + "/AssetBundles/Code");
         // FileTools.CheckDirAndCreateWhenNeeded(Application.dataPath + "/AssetBundles/Code");
-        // List<string> hotUpdateDll = new List<string>()
-        // {
-        //     "F8Framework.F8ExcelDataClass", // 自行添加需要热更的程序集
-        //     "F8Framework.Launcher"
-        // };
-        // foreach (var dll in hotUpdateDll)
+        // foreach (var dll in HybridCLR.Editor.SettingsUtil.HotUpdateAssemblyNamesExcludePreserved) // 获取HybridCLR设置面板的dll名称
         // {
         //     FileTools.SafeCopyFile(
         //         HybridCLR.Editor.SettingsUtil.GetHotUpdateDllsOutputDirByTarget(EditorUserBuildSettings.activeBuildTarget) + "/" + dll + ".dll",
@@ -35,7 +30,9 @@
 3. 代码已拆分程序集  
    * AOT程序集：（F8Framework.Core）  
    * 热更新程序集：（F8Framework.F8ExcelDataClass、F8Framework.Launcher）  
-4. 注意：主工程不能直接引用热更新代码，这里通过反射来调用热更新代码。  
+4. 将这两个热更新程序集拖进 HybridCLR 设置面板中  
+![image](https://tippinggame-1257018413.cos.ap-guangzhou.myqcloud.com/TippingGame/HybridCLR/ui_20241128235509.png)  
+5. 注意：主工程不能直接引用热更新代码，这里通过反射来调用热更新代码。  
    * 在启动场景挂在一个加载dll脚本
 ```C#
 using System;
