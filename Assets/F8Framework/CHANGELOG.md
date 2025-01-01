@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.0.89] - 2024-12-27
+1.完善Module文档  
+
+## [1.0.88] - 2024-12-26
+1.修复StaticModule缺少Init  
+
+## [1.0.87] - 2024-12-24
+1.默认动画插值改为Ease.EaseOutQuad  
+
+## [1.0.86] - 2024-12-22
+1.Tween模块增加LocalMove，ShakePosition，ShakeRotation，ShakeScale方法  
+2.默认动画插值改为Ease.EaseOutQuad  
+
+## [1.0.85] - 2024-12-21
+1.优化编辑器工具的UI位置  
+2.优化内置Shader的警告  
+
+## [1.0.84] - 2024-12-15
+1.UI编辑器工具ImageResize4优化  
+
 ## [1.0.83] - 2024-12-11
 1.#26 修复截图工具保存路径错误问题  
 2.优化注释提示  

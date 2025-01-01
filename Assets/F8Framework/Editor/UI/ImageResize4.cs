@@ -8,7 +8,7 @@ namespace F8Framework.Core.Editor
     {
         public static bool IsToBig = true; //向着更大缩放
 
-        [MenuItem("Assets/（F8UI界面管理功能）/（图片尺寸设为4的倍数）", false, -4)]
+        [MenuItem("Assets/（F8UI界面管理功能）/（图片尺寸设为4的倍数）", false, 1024)]
         public static void ResizeImages()
         {
             // 获取所有选中 文件、文件夹的 GUID
@@ -36,15 +36,15 @@ namespace F8Framework.Core.Editor
                     return;
                 }
 
-                //更改图片属性，可读，否则无法获取Pixel
-                importer.isReadable = true;
-                importer.SaveAndReimport();
-
                 if (tex.width % 4 == 0 && tex.height % 4 == 0)
                 {
                     return;
                 }
 
+                //更改图片属性，可读，否则无法获取Pixel
+                importer.isReadable = true;
+                importer.SaveAndReimport();
+                
                 Vector2Int v2 = GetFourSize(tex.width, tex.height);
                 var texCopy = new Texture2D(v2.x, v2.y);
                 //从原来图像上根据现在的大小计算像素点

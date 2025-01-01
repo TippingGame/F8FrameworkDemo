@@ -25,7 +25,7 @@ namespace F8Framework.Core
         protected float startTime = 0.0f;
         protected float duration = 0.0f;
         protected float currentTime = 0.0f;
-        protected Ease ease = Ease.Linear;
+        protected Ease ease = Ease.EaseOutQuad;
         protected bool isPause = false;
         protected bool isComplete = false;
         protected UpdateMode updateMode = UpdateMode.Update;
@@ -227,7 +227,7 @@ namespace F8Framework.Core
             startTime = 0.0f;
             duration = 0.0f;
             currentTime = 0.0f;
-            ease = Ease.Linear;
+            ease = Ease.EaseOutQuad;
             updateMode = UpdateMode.Update;
             owner = null;
             timeSinceStart = 0.0f;
