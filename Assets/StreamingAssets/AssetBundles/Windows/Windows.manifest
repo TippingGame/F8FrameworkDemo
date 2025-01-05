@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2941621198
+CRC: 496671716
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -111,17 +111,23 @@ AssetBundleManifest:
       Dependencies:
         Dependency_0: textures/packforest01
     Info_30:
-      Name: config/binconfigdata/item
+      Name: ui/uiaward
       Dependencies: {}
     Info_31:
-      Name: config/binconfigdata/localizedstrings
+      Name: ui/uitip
       Dependencies: {}
     Info_32:
-      Name: config/binconfigdata/role
+      Name: config/binconfigdata/item
       Dependencies: {}
     Info_33:
-      Name: config/binconfigdata/sheet1
+      Name: config/binconfigdata/localizedstrings
       Dependencies: {}
     Info_34:
+      Name: config/binconfigdata/role
+      Dependencies: {}
+    Info_35:
+      Name: config/binconfigdata/sheet1
+      Dependencies: {}
+    Info_36:
       Name: config/binconfigdata/sheet2
       Dependencies: {}
