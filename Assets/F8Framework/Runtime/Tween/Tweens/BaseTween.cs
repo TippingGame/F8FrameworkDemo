@@ -1,7 +1,9 @@
 ﻿using UnityEngine;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.ComponentModel;
 
 namespace F8Framework.Core
 {
@@ -11,18 +13,16 @@ namespace F8Framework.Core
         LateUpdate,
         FixedUpdate
     }
-
-
+    
     /// <summary>
     /// Base tween class
     /// </summary>
     
-    public abstract class BaseTween : IRecyclable<BaseTween>
+    public abstract class BaseTween : IEnumerator
     {
         #region PROTECTED
         protected int id = 0;
         protected float delay = 0.0f;
-        protected float startTime = 0.0f;
         protected float duration = 0.0f;
         protected float currentTime = 0.0f;
         protected Ease ease = Ease.EaseOutQuad;
@@ -33,44 +33,54 @@ namespace F8Framework.Core
         private float timeSinceStart = 0.0f;
         #endregion
 
-        public int ID { get { return id; } }
+        public int ID
+        {
+            get => id;
+            set => id = value;
+        }
         public bool IsComplete 
         { 
-            get { return isComplete; }
-            set { isComplete = value; }
+            get => isComplete;
+            set => isComplete = value;
         }
-
+        
         #region EVENTS
         protected Action onComplete = null;
-        public Action onUpdate = null;
+        protected Action onCompleteSequence = null;
+        protected Action onUpdate = null;
         protected Action<Vector3> onUpdateVector3 = null;
         protected Action<float> onUpdateFloat = null;
         protected Action<Color> onUpdateColor = null;
         protected Action<Vector2> onUpdateVector2 = null;
         protected Action<Quaternion> onUpdateQuaternion = null;
         protected List<TimeEvent> events = new List<TimeEvent>();
-        public Action<BaseTween> Recycle { get; set; }
         #endregion
 
         public GameObject Owner { get { return owner; } }
         public UpdateMode UpdateMode { get { return updateMode; } }
-        public bool HandleBySequence { get; set; }
-
         public Action PauseReset = null;
-
+        public bool CanRecycle = true;
+        public bool IsRecycle = false;
+        
         public BaseTween()
         {
-            onComplete += CheckIfTweenIsComplete;
+            onComplete = FinishTween;
         }
-
-        private void CheckIfTweenIsComplete()
+        
+        private void FinishTween()
         {
-            if (!HandleBySequence)
+            IsComplete = true;
+            // 可以回收
+            if (CanRecycle)
             {
-                //Recycle(this);
-            }            
+                IsRecycle = true;
+            }
+            else
+            {
+                onCompleteSequence?.Invoke();
+            }
         }
-
+        
         /// <summary>
         /// Called to update this tween
         /// </summary>
@@ -102,10 +112,10 @@ namespace F8Framework.Core
 
         public virtual void ReplayReset()
         {
-            isComplete = false;
+            IsComplete = false;
             isPause = false;
             currentTime = 0.0f;
-            onComplete = null;
+            onCompleteSequence = null;
         }
 
         /// <summary>
@@ -141,6 +151,12 @@ namespace F8Framework.Core
             return this;
         }
 
+        public virtual BaseTween SetOnCompleteSequence(Action action)
+        {
+            onCompleteSequence += action;
+            return this;
+        }
+        
         /// <summary>
         /// set a delay
         /// </summary>
@@ -149,7 +165,6 @@ namespace F8Framework.Core
         public virtual BaseTween SetDelay(float t)
         {
             delay = t;
-
             return this;
         }
 
@@ -224,18 +239,16 @@ namespace F8Framework.Core
         {
             id = 0;
             delay = 0.0f;
-            startTime = 0.0f;
             duration = 0.0f;
             currentTime = 0.0f;
             ease = Ease.EaseOutQuad;
             updateMode = UpdateMode.Update;
             owner = null;
             timeSinceStart = 0.0f;
-            isComplete = false;
+            IsComplete = false;
             isPause = false;
-            HandleBySequence = false;
-
-            onComplete = null;
+            CanRecycle = true;
+            
             onUpdate = null;
             onUpdateVector3 = null;
             onUpdateFloat = null;
@@ -244,11 +257,44 @@ namespace F8Framework.Core
             onUpdateQuaternion = null;
             PauseReset = null;
             events.Clear();
-
-            onComplete += CheckIfTweenIsComplete;
+            IsRecycle = false;
+            onCompleteSequence = null;
+            
+            onComplete = FinishTween;
+        }
+        
+        /// <summary>使用此方法在协程中等待Tween。</summary>
+        /// <example><code>
+        /// IEnumerator Coroutine() {
+        ///     yield return gameObject.Move(Vector3.one, 1f);
+        /// }
+        /// </code></example>
+        bool IEnumerator.MoveNext() {
+            return !IsRecycle;
         }
 
+        object IEnumerator.Current {
+            get {
+                if (IsRecycle)
+                {
+                    LogF8.LogError("已回收的Tween无法访问当前值");
+                }
+                return null;
+            }
+        }
+
+        void IEnumerator.Reset() => throw new NotSupportedException();
         
+        /// <summary>此方法是异步/等待支持所必需的。不要直接使用它。</summary>
+        /// <example><code>
+        /// async void Coroutine() {
+        ///     await gameObject.Move(Vector3.one, 1f);
+        /// }
+        /// </code></example>
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public TweenAwaiter GetAwaiter() {
+            return new TweenAwaiter(this);
+        }
     }
 
     public class TimeEvent

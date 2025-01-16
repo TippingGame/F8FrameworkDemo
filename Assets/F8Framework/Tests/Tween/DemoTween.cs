@@ -1,3 +1,4 @@
+using System.Collections;
 using F8Framework.Core;
 using F8Framework.Launcher;
 using UnityEngine;
@@ -12,7 +13,7 @@ namespace F8Framework.Tests
 
         void Start()
         {
-            /*--------------------------普通用法--------------------------*/
+            /*-----------------------------------------普通用法-----------------------------------------*/
             // 播放动画，设置Ease动画，设置OnComplete完成回调
             int id = gameObject.ScaleTween(Vector3.one, 1f).SetEase(Ease.Linear).SetOnComplete(OnViewOpen).ID;
 
@@ -39,10 +40,6 @@ namespace F8Framework.Tests
             gameObject.ShakeScale(Vector3.one);
             gameObject.ShakePositionAtSpeed(Vector3.one, shakeCount: 8, speed: 5f, fadeOut: false);
 
-            // 终止动画
-            gameObject.CancelTween(id);
-            gameObject.CancelAllTweens();
-
             // 设置Delay
             gameObject.Move(Vector3.one, 1.0f).SetDelay(2.0f);
             
@@ -56,15 +53,24 @@ namespace F8Framework.Tests
                 LogF8.Log(v);
             });
             
-            FF8.Tween.CancelTween(valueTween);
+            // 取消动画，只允许使用ID取消动画，动画基类会回收再利用，但ID唯一递增
+            int id2 = valueTween.ID;
+            FF8.Tween.CancelTween(id2);
             
             // 物体移动
             BaseTween gameObjectTween = FF8.Tween.Move(gameObject, Vector3.one, 3f).SetOnUpdateVector3((Vector3 v) =>
             {
                 LogF8.Log(v);
             });
-            
-            FF8.Tween.CancelTween(gameObjectTween.ID);
+
+            // 重播动画，先设置动画为不可回收，记得手动回收
+            gameObjectTween.CanRecycle = false;
+            gameObjectTween.ReplayReset();
+                
+            // 设置动画拥有者后，可使用此取消方式
+            gameObjectTween.SetOwner(gameObject);
+            FF8.Tween.CancelTween(gameObject);
+            gameObject.CancelAllTweens();
             
             // 根据相对坐标移动UI
             // (0.0 , 1.0) _______________________(1.0 , 1.0)
@@ -76,7 +82,8 @@ namespace F8Framework.Tests
             transform.GetComponent<RectTransform>().MoveUI(new Vector2(1f, 1f), canvasRect, 1f)
                 .SetEase(Ease.EaseOutBounce);
             
-            /*--------------------------动画组合--------------------------*/
+            
+            /*-----------------------------------------动画组合-----------------------------------------*/
             // 初始化，依次执行动画/并行执行动画，回调
             var sequence = SequenceManager.GetSequence();
             
@@ -95,6 +102,26 @@ namespace F8Framework.Tests
             
             // 回收Sequence，并停止所有动画
             SequenceManager.KillSequence(sequence);
+        }
+        
+        /*-----------------------------------------使用协程等待动画和动画组-----------------------------------------*/
+        IEnumerator Coroutine() {
+            yield return gameObject.Move(Vector3.one, 1f);
+            
+            var sequence = SequenceManager.GetSequence();
+            var baseTween = gameObject.Move(Vector3.one, 1f);
+            sequence.Append(baseTween);
+            yield return sequence;
+        }
+        
+        /*-----------------------------------------使用async/await等待动画和动画组-----------------------------------------*/
+        async void Async() {
+            await gameObject.Move(Vector3.one, 1f);
+            
+            var sequence = SequenceManager.GetSequence();
+            var baseTween = gameObject.Move(Vector3.one, 1f);
+            sequence.Append(baseTween);
+            await sequence;
         }
     }
 }
