@@ -1,9 +1,9 @@
 ManifestFileVersion: 0
-CRC: 3244644321
+CRC: 2363852413
 Hashes:
   AssetFileHash:
     serializedVersion: 2
-    Hash: 30f6037895d049b5fb1ff0b84fc35db2
+    Hash: f147adc7fc5cdfe05f670caf95553e87
   TypeTreeHash:
     serializedVersion: 2
     Hash: 5ad585dd02dfb5016c0dad519eab8f49
@@ -13,5 +13,5 @@ ClassTypes:
   Script: {instanceID: 0}
 SerializeReferenceClassIdentifiers: []
 Assets:
-- Assets/AssetBundles/Config/BinConfigData/Sheet2.bytes
+- Assets/AssetBundles/Config/BinConfigData/Sheet2.json
 Dependencies: []

@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.0.99] - 2025-01-24
+1.新增：配置表模块decimal类型，优化：unity基础类型也可以加括号，list指定初始容量  
+2.完善文档  
+
+## [1.0.98] - 2025-01-23
+1.修复配置表模块转换object数据类型的问题  
+
+## [1.0.97] - 2025-01-23
+1.修复配置表模块容器类型互相嵌套时的错误问题  
+
+## [1.0.96] - 2025-01-23
+1.优化配置表模块可为基础类型和容器类型，可自由组合  
+2.新增配置表更多字段类型，如基础类型：bool，byte，short，容器类型：[][][]，list<>，dictionary<,>，Unity基础类型vector2，vector3，vector4，vector2int，vector3int，quaternion，color  
+3.新增LitJson支持更多的字典Key值  
+
+## [1.0.95] - 2025-01-22
+1.新增资产模块LoadAsync支持async/await和协程异步方式  
+2.修复资产模块先加载资源，再加载同名资源的子资产后失败的问题  
+
 ## [1.0.94] - 2025-01-16
 1.新增Tween模块支持协程和async/await等待动画  
 2.新增UI序列帧动画组件SpriteSequenceFrame  

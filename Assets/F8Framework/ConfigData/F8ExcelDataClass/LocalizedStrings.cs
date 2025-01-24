@@ -4,6 +4,7 @@ Don't Edit it*/
 using System;
 using System.Collections.Generic;
 using UnityEngine.Scripting;
+using UnityEngine;
 
 namespace F8Framework.F8ExcelDataClass
 {
@@ -11,18 +12,18 @@ namespace F8Framework.F8ExcelDataClass
 	public class LocalizedStringsItem
 	{
 		[Preserve]
-		public int id;
+		public System.Int32 id;
 		[Preserve]
-		public string TextID;
+		public System.String TextID;
 		[Preserve]
-		public string ChineseSimplified;
+		public System.String ChineseSimplified;
 		[Preserve]
-		public string English;
+		public System.String English;
 	}
 	
 	[Serializable]
 	public class LocalizedStrings
 	{
-		public Dictionary<int, LocalizedStringsItem> Dict = new Dictionary<int, LocalizedStringsItem>();
+		public Dictionary<System.Int32, LocalizedStringsItem> Dict = new Dictionary<System.Int32, LocalizedStringsItem>();
 	}
 }

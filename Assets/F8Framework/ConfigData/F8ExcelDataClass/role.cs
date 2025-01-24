@@ -4,6 +4,7 @@ Don't Edit it*/
 using System;
 using System.Collections.Generic;
 using UnityEngine.Scripting;
+using UnityEngine;
 
 namespace F8Framework.F8ExcelDataClass
 {
@@ -11,14 +12,14 @@ namespace F8Framework.F8ExcelDataClass
 	public class roleItem
 	{
 		[Preserve]
-		public int id;
+		public System.Int32 id;
 		[Preserve]
-		public string name;
+		public System.String name;
 	}
 	
 	[Serializable]
 	public class role
 	{
-		public Dictionary<int, roleItem> Dict = new Dictionary<int, roleItem>();
+		public Dictionary<System.Int32, roleItem> Dict = new Dictionary<System.Int32, roleItem>();
 	}
 }

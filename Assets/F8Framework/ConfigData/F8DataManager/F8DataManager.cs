@@ -24,7 +24,7 @@ namespace F8Framework.F8ExcelDataClass
 		private role p_role;
 
 		[Preserve]
-		public Sheet1Item GetSheet1ByID(int id)
+		public Sheet1Item GetSheet1ByID(System.Int32 id)
 		{
 			Sheet1Item t = null;
 			p_Sheet1.Dict.TryGetValue(id, out t);
@@ -33,13 +33,13 @@ namespace F8Framework.F8ExcelDataClass
 		}
 
 		[Preserve]
-		public Dictionary<int, Sheet1Item> GetSheet1()
+		public Dictionary<System.Int32, Sheet1Item> GetSheet1()
 		{
 			return p_Sheet1.Dict;
 		}
 
 		[Preserve]
-		public Sheet2Item GetSheet2ByID(int id)
+		public Sheet2Item GetSheet2ByID(System.Int32 id)
 		{
 			Sheet2Item t = null;
 			p_Sheet2.Dict.TryGetValue(id, out t);
@@ -48,13 +48,13 @@ namespace F8Framework.F8ExcelDataClass
 		}
 
 		[Preserve]
-		public Dictionary<int, Sheet2Item> GetSheet2()
+		public Dictionary<System.Int32, Sheet2Item> GetSheet2()
 		{
 			return p_Sheet2.Dict;
 		}
 
 		[Preserve]
-		public itemItem GetitemByID(int id)
+		public itemItem GetitemByID(System.Int32 id)
 		{
 			itemItem t = null;
 			p_item.Dict.TryGetValue(id, out t);
@@ -63,13 +63,13 @@ namespace F8Framework.F8ExcelDataClass
 		}
 
 		[Preserve]
-		public Dictionary<int, itemItem> Getitem()
+		public Dictionary<System.Int32, itemItem> Getitem()
 		{
 			return p_item.Dict;
 		}
 
 		[Preserve]
-		public LocalizedStringsItem GetLocalizedStringsByID(int id)
+		public LocalizedStringsItem GetLocalizedStringsByID(System.Int32 id)
 		{
 			LocalizedStringsItem t = null;
 			p_LocalizedStrings.Dict.TryGetValue(id, out t);
@@ -78,13 +78,13 @@ namespace F8Framework.F8ExcelDataClass
 		}
 
 		[Preserve]
-		public Dictionary<int, LocalizedStringsItem> GetLocalizedStrings()
+		public Dictionary<System.Int32, LocalizedStringsItem> GetLocalizedStrings()
 		{
 			return p_LocalizedStrings.Dict;
 		}
 
 		[Preserve]
-		public roleItem GetroleByID(int id)
+		public roleItem GetroleByID(System.Int32 id)
 		{
 			roleItem t = null;
 			p_role.Dict.TryGetValue(id, out t);
@@ -93,7 +93,7 @@ namespace F8Framework.F8ExcelDataClass
 		}
 
 		[Preserve]
-		public Dictionary<int, roleItem> Getrole()
+		public Dictionary<System.Int32, roleItem> Getrole()
 		{
 			return p_role.Dict;
 		}
@@ -167,44 +167,27 @@ namespace F8Framework.F8ExcelDataClass
 		[Preserve]
 		public T Load<T>(string name)
 		{
-			IFormatter f = new BinaryFormatter();
 			TextAsset textAsset = AssetManager.Instance.Load<TextAsset>(name);
 			if (textAsset == null)
 			{
 				return default(T);
 			}
 			AssetManager.Instance.Unload(name, false);
-#if UNITY_WEBGL
 			T obj = Util.LitJson.ToObject<T>(textAsset.text);
 			return obj;
-#else
-			using (MemoryStream memoryStream = new MemoryStream(textAsset.bytes))
-			{
-				return (T)f.Deserialize(memoryStream);
-			}
-#endif
 		}
 
 		[Preserve]
 		public IEnumerator LoadAsync<T>(string name, Action<T> callback)
 		{
-			IFormatter f = new BinaryFormatter();
 			var load = AssetManager.Instance.LoadAsyncCoroutine<TextAsset>(name);
 			yield return load;
 			TextAsset textAsset = AssetManager.Instance.GetAssetObject<TextAsset>(name);
 			if (textAsset != null)
 			{
 				AssetManager.Instance.Unload(name, false);
-#if UNITY_WEBGL
 				T obj = Util.LitJson.ToObject<T>(textAsset.text);
 				callback(obj);
-#else
-				using (Stream s = new MemoryStream(textAsset.bytes))
-				{
-					T obj = (T)f.Deserialize(s);
-					callback(obj);
-				}
-#endif
 			}
 		}
 

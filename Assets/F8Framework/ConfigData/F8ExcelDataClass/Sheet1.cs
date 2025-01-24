@@ -4,6 +4,7 @@ Don't Edit it*/
 using System;
 using System.Collections.Generic;
 using UnityEngine.Scripting;
+using UnityEngine;
 
 namespace F8Framework.F8ExcelDataClass
 {
@@ -11,24 +12,24 @@ namespace F8Framework.F8ExcelDataClass
 	public class Sheet1Item
 	{
 		[Preserve]
-		public int id;
+		public System.Int32 id;
 		[Preserve]
-		public string name;
+		public System.String name;
 		[Preserve]
-		public float[] price;
+		public System.Single[] price;
 		[Preserve]
-		public int fddfd;
+		public System.Int32 fddfd;
 		[Preserve]
-		public float aaasd;
+		public System.Single aaasd;
 		[Preserve]
-		public int[] dfdfd;
+		public System.Int32[] dfdfd;
 		[Preserve]
-		public string[] gggaa;
+		public System.String[] gggaa;
 	}
 	
 	[Serializable]
 	public class Sheet1
 	{
-		public Dictionary<int, Sheet1Item> Dict = new Dictionary<int, Sheet1Item>();
+		public Dictionary<System.Int32, Sheet1Item> Dict = new Dictionary<System.Int32, Sheet1Item>();
 	}
 }
