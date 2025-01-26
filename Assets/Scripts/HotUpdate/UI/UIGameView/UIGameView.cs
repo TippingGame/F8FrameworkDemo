@@ -13,10 +13,20 @@ public class UIGameView : BaseView
     private List<Transform> hps = new List<Transform>();
 
     private int hp = 5;
+    
+    public const string UIMain = "UIMain";
+    public const string UIMain_Intensify = "UIMain_Intensify";
     // Awake
     protected override void OnAwake()
     {
         FF8.Message.AddEventListener(GameDataModule.MessageEvent.SubHp, SubHp, this);
+        // 手动添加
+        UIRedDot.Instance.AddRedDotCfg(UIMain);
+        UIRedDot.Instance.AddRedDotCfg(UIMain_Intensify, UIMain);
+        
+        UIRedDot.Instance.Init();
+        
+        UIRedDot.Instance.Binding(UIMain_Intensify, this.go_red_go);
     }
 
     private void SubHp()
@@ -66,7 +76,7 @@ public class UIGameView : BaseView
     // Start
     protected override void OnStart()
     {
-        
+        UIRedDot.Instance.Change(UIMain_Intensify, true);
         // 创建下载器
         downloader = FF8.Download.CreateDownloader("Download", new Downloader());
         
@@ -196,7 +206,10 @@ public class UIGameView : BaseView
     [SerializeField] private Text TextLegacy1_TextLegacy;
     [SerializeField] private RawImage rimg_logo_rimg;
     [SerializeField] private GameObject rimg_logo_go;
+    [SerializeField] private Image rimg_logo1_img;
+    [SerializeField] private GameObject rimg_logo1_go;
     [SerializeField] private Transform tf_hp_tf;
+    [SerializeField] private GameObject go_red_go;
 
 #if UNITY_EDITOR
     protected override void SetComponents()
@@ -206,7 +219,10 @@ public class UIGameView : BaseView
         TextLegacy1_TextLegacy = transform.Find("Text (Legacy) (1)").GetComponent<Text>();
         rimg_logo_rimg = transform.Find("rimg_logo").GetComponent<RawImage>();
         rimg_logo_go = transform.Find("rimg_logo").gameObject;
+        rimg_logo1_img = transform.Find("rimg_logo (1)").GetComponent<Image>();
+        rimg_logo1_go = transform.Find("rimg_logo (1)").gameObject;
         tf_hp_tf = transform.Find("tf_group/tf_hp").GetComponent<Transform>();
+        go_red_go = transform.Find("rimg_logo (1)/go_red").gameObject;
     }
 #endif
     // 自动获取组件（自动生成，不能删除）

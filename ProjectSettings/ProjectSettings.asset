@@ -845,7 +845,7 @@ PlayerSettings:
   webGLDecompressionFallback: 0
   webGLPowerPreference: 2
   scriptingDefineSymbols:
-    Standalone: 
+    Standalone: BUILD_F8FRAMEWORK_TEST
   additionalCompilerArguments: {}
   platformArchitecture: {}
   scriptingBackend:
