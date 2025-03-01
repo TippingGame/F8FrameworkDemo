@@ -30,9 +30,14 @@ public class UIAward : BaseView
     // 参数传入
     protected override void OnAdded(int uiId, object[] args = null)
     {
-        
+        FF8.Input.AddButtonPerformed(InputButtonType.EscClick, Performed);
     }
-    
+
+    private void Performed(string obj)
+    {
+        this.Close();
+    }
+
     // Start
     protected override void OnStart()
     {
@@ -59,7 +64,7 @@ public class UIAward : BaseView
     // 删除之前
     protected override void OnBeforeRemove()
     {
-        
+        FF8.Input.RemoveButtonPerformed(InputButtonType.EscClick, Performed);
     }
     
     // 删除
