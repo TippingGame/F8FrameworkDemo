@@ -34,8 +34,7 @@ public class RoleItem : BaseItem
             FF8.Audio.PlayUISound("Electronic high shot");
             FF8.UI.Close(1, true);
             GameDataModule.Instance.RoleId = _index;
-            SceneManager.LoadScene("Main");
-            FF8.UI.Open(DemoLauncher.DemoLauncher.UIID.UIGameView);
+            FF8.Procedure.RunProcedureNode<DemoGameState>();
         });
     }
     

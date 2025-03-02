@@ -13,17 +13,17 @@ public class UIAward : BaseView
         Button_Mask_Button.onClick.AddListener(() =>
         {
             this.Close();
-            FF8.UI.Open(DemoLauncher.DemoLauncher.UIID.UITip, new object[] { "已领取奖励" });
+            FF8.UI.Open(DemoInitState.UIID.UITip, new object[] { "已领取奖励" });
         });
         Button_Close_Button.onClick.AddListener(() =>
         {
             this.Close();
-            FF8.UI.Open(DemoLauncher.DemoLauncher.UIID.UITip, new object[] { "已领取奖励" });
+            FF8.UI.Open(DemoInitState.UIID.UITip, new object[] { "已领取奖励" });
         });
         Button_Get_Button.onClick.AddListener(() =>
         {
             this.Close();
-            FF8.UI.Open(DemoLauncher.DemoLauncher.UIID.UITip, new object[] { "已领取奖励" });
+            FF8.UI.Open(DemoInitState.UIID.UITip, new object[] { "已领取奖励" });
         });
     }
     

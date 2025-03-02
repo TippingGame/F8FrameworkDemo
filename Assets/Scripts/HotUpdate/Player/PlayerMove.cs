@@ -90,11 +90,11 @@ namespace Demo
          playerFSM.DefaultState = moveState;
          playerFSM.ChangeToDefaultState();
 
-         FF8.UI.Open(DemoLauncher.DemoLauncher.UIID.UIAward);
-         FF8.UI.Open(DemoLauncher.DemoLauncher.UIID.UIAward);
-         FF8.UI.Open(DemoLauncher.DemoLauncher.UIID.UIAward);
-         FF8.UI.Open(DemoLauncher.DemoLauncher.UIID.UIAward);
-         FF8.UI.Open(DemoLauncher.DemoLauncher.UIID.UIAward);
+         FF8.UI.Open(DemoInitState.UIID.UIAward);
+         FF8.UI.Open(DemoInitState.UIID.UIAward);
+         FF8.UI.Open(DemoInitState.UIID.UIAward);
+         FF8.UI.Open(DemoInitState.UIID.UIAward);
+         FF8.UI.Open(DemoInitState.UIID.UIAward);
          
          // FF8.Input.SwitchDevice(new XboxInputDevice());
       }
