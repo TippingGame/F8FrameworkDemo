@@ -34,38 +34,75 @@ namespace F8Framework.Core.Editor
             F8EditorPrefs.SetBool("IsEditorMode", !isEditorMode);
         }
         
-        [MenuItem("开发工具/F8Run _F8")]
+        
+        [MenuItem("开发工具/清除AssetBundleNames")]
+        public static void ClearAssetBundlesName()
+        {
+            ABBuildTool.ClearAllAssetNames();
+        }
+
+        [MenuItem("开发工具/1: F8Run _F8", false, 200)]
         public static void F8Run()
         {
+            LoadAllExcelData();
             F8EditorPrefs.SetBool("compilationFinishedHotUpdateDll", true);
             F8EditorPrefs.SetBool("compilationFinishedBuildAB", true);
-            LoadAllExcelData();
         }
-        
-        [MenuItem("开发工具/生成并复制热更新Dll-F8")]
+
+        [MenuItem("开发工具/3: 生成并复制热更新Dll-F8", false, 210)]
         public static void GenerateCopyHotUpdateDll()
         {
             // F8EditorPrefs.SetBool("compilationFinishedHotUpdateDll", false);
             // HybridCLR.Editor.Commands.PrebuildCommand.GenerateAll();
-            // FileTools.SafeClearDir(Application.dataPath + "/AssetBundles/Code");
-            // FileTools.CheckDirAndCreateWhenNeeded(Application.dataPath + "/AssetBundles/Code");
+            //
+            // string outpath = Application.dataPath + "/AssetBundles/Code/";
+            //
+            // FileTools.SafeClearDir(outpath);
+            // FileTools.CheckDirAndCreateWhenNeeded(outpath);
             // foreach (var dll in HybridCLR.Editor.SettingsUtil.HotUpdateAssemblyNamesExcludePreserved) // 获取HybridCLR设置面板的dll名称
             // {
+            //     var path =
+            //         HybridCLR.Editor.SettingsUtil.GetHotUpdateDllsOutputDirByTarget(EditorUserBuildSettings
+            //             .activeBuildTarget) + "/" + dll + ".dll";
+            //     Debug.Log("dll:"+path);
             //     FileTools.SafeCopyFile(
             //         HybridCLR.Editor.SettingsUtil.GetHotUpdateDllsOutputDirByTarget(EditorUserBuildSettings.activeBuildTarget) + "/" + dll + ".dll",
-            //         Application.dataPath + "/AssetBundles/Code/" + dll + ".bytes");
+            //         outpath + dll + ".bytes");
             //     LogF8.LogAsset("生成并复制热更新dll：" + dll);
             // }
+            //
+            // // 补充元数据
+            // List<string> aotDllList = new List<string>
+            // {
+            //     "mscorlib.dll",
+            //     "System.dll",
+            //     "System.Core.dll", // 如果使用了Linq，需要这个
+            //     // "Newtonsoft.Json.dll", 
+            //     // "protobuf-net.dll",
+            // };
+            //
+            // foreach (var aotDllName in aotDllList)
+            // {
+            //     var mscorlibsouPath =
+            //         HybridCLR.Editor.SettingsUtil.GetAssembliesPostIl2CppStripDir(EditorUserBuildSettings
+            //             .activeBuildTarget) + "/" + aotDllName;
+            //     
+            //     FileTools.SafeCopyFile(
+            //         mscorlibsouPath,
+            //         outpath + aotDllName + "by.bytes");
+            //     LogF8.LogAsset("生成并复制源数据dll：" + aotDllName);
+            // }
+            //
             // AssetDatabase.Refresh();
         }
-        
-        [MenuItem("开发工具/Excel导表-F8")]
+
+        [MenuItem("开发工具/2: Excel导表-F8", false, 205)]
         public static void LoadAllExcelData()
         {
             ExcelDataTool.LoadAllExcelData();
         }
-        
-        [MenuItem("开发工具/打包AssetBundles目录资源-F8")]
+
+        [MenuItem("开发工具/4: 打包AssetBundles目录资源-F8", false, 215)]
         public static void BuildAssetBundles()
         {
             F8EditorPrefs.SetBool("compilationFinishedBuildAB", false);

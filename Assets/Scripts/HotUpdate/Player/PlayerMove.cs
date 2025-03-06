@@ -97,8 +97,26 @@ namespace Demo
          FF8.UI.Open(DemoInitState.UIID.UIAward);
          
          // FF8.Input.SwitchDevice(new XboxInputDevice());
+         
+         FF8.Storage.SetEncrypt(new Util.OptimizedAES("AES_Key123", "AES_IV123"));
+         
+         FF8.Storage.SetUser("userID");
+         
+         FF8.Storage.SetFloat("PlayerSpeed", speed);
+         
+         FF8.Storage.SetFloat("PlayerSpeed", speed, true);
+         
+         FF8.Storage.SetObject("Key5", Info);
       }
 
+      public class ClassInfo
+      {
+         public string Initial = "initial";
+         public string id = "userID";
+      }
+
+      public ClassInfo Info = new ClassInfo();
+      
       private void Update()
       {
          Move();
