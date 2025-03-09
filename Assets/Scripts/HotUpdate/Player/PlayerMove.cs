@@ -107,6 +107,13 @@ namespace Demo
          FF8.Storage.SetFloat("PlayerSpeed", speed, true);
          
          FF8.Storage.SetObject("Key5", Info);
+         
+         
+         // 启动SDK，平台id，渠道id
+         FF8.SDK.SDKStart("1", "1");
+    
+         // 登录
+         FF8.SDK.SDKLogin();
       }
 
       public class ClassInfo

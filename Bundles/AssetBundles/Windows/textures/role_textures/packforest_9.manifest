@@ -1,0 +1,37 @@
+ManifestFileVersion: 0
+CRC: 4157246852
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 7f61b20770fa8a9c02eddddf1f8fce5d
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c29c357128feff56790ec9816c4fc93d
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+- Class: 687078895
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/AssetBundles/Textures/Role_Textures/PackForest_9.png
+- Assets/AssetBundles/Textures/Role_Textures/PackForest_7.png
+- Assets/AssetBundles/Textures/Role_Textures/PackForest_4.png
+- Assets/AssetBundles/Textures/Role_Textures/PackForest_8.png
+- Assets/AssetBundles/Textures/Role_Textures/PackForest_14.png
+- Assets/AssetBundles/Textures/Role_Textures/PackForest_3.png
+- Assets/AssetBundles/Textures/Role_Textures/PackForest_1.png
+- Assets/AssetBundles/Textures/Role_Textures/PackForest_15.png
+- Assets/AssetBundles/Textures/Role_Textures/PackForest_10.png
+- Assets/AssetBundles/Textures/Role_Textures/PackForest_11.png
+- Assets/AssetBundles/Textures/Role_Textures/Role_Atlas.spriteatlasv2
+- Assets/AssetBundles/Textures/Role_Textures/PackForest_5.png
+- Assets/AssetBundles/Textures/Role_Textures/PackForest_13.png
+- Assets/AssetBundles/Textures/Role_Textures/PackForest_12.png
+- Assets/AssetBundles/Textures/Role_Textures/PackForest_6.png
+- Assets/AssetBundles/Textures/Role_Textures/PackForest_2.png
+- Assets/AssetBundles/Textures/Role_Textures/PackForest_0.png
+Dependencies: []
