@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Text;
 using F8Framework.Core;
 using F8Framework.Launcher;
 using UnityEngine;
@@ -72,6 +74,13 @@ namespace Demo
       public Transform playerRole;
 
       private IFSM<PlayerMove> playerFSM;
+      
+      public bool isServer = false;
+      
+      public LinkedList<int> ClientList = new LinkedList<int>(); // 客户端列表
+      
+      public Dictionary<int, Transform> PlayerPool = new Dictionary<int, Transform>(); // 玩家对象池
+      
       private void Start()
       {
          string name = FF8.Config.GetroleByID(GameDataModule.Instance.RoleId).name;
@@ -114,6 +123,39 @@ namespace Demo
     
          // 登录
          FF8.SDK.SDKLogin();
+
+         if (isServer)
+         {
+            // 设置回调
+            tcpServerChannel.OnConnected += TcpServer_OnConnected;
+            tcpServerChannel.OnDisconnected += TcpServer_OnDisconnected;
+            tcpServerChannel.OnDataReceived += TcpServer_OnDataReceived;
+         
+            // 可选，开启多线程（注意：WebGL不支持多线程）
+            // FF8.Network.StartThread();
+         
+            // 添加通道
+            FF8.Network.AddChannel(tcpServerChannel);
+         
+            // 开始监听端口
+            tcpServerChannel.Start();
+         }
+         else
+         {
+            // 设置回调
+            tcpClientChannel.OnConnected += TcpClient_OnConnected;
+            tcpClientChannel.OnDataReceived += TcpClient_OnDataReceived;
+            tcpClientChannel.OnDisconnected += TcpClient_OnDisconnected;
+         
+            // 可选，开启多线程（注意：WebGL不支持多线程）
+            // FF8.Network.StartThread();
+         
+            // 添加通道
+            FF8.Network.AddChannel(tcpClientChannel);
+         
+            // 连接通道
+            tcpClientChannel.Connect("127.0.0.1", 6789);
+         }
       }
 
       public class ClassInfo
@@ -162,6 +204,118 @@ namespace Demo
             FF8.Message.DispatchEvent(GameDataModule.MessageEvent.SubHp);
             
             playerFSM.ChangeState<AttackState>();
+         }
+      }
+      
+      
+      /*----------------------------tcp/kcp服务器使用----------------------------*/
+      // 创建tcp通道
+      TcpServerChannel tcpServerChannel = new TcpServerChannel("TEST_TCP_SERVER", 6789);
+      
+      void TcpServer_OnConnected(int conv, string ip)
+      {
+         LogF8.LogNet($"TCP_SERVER conv: {conv} Connected, ip: {ip}");
+         ClientList.AddLast(conv);
+      }
+      
+      void TcpServer_OnDataReceived(int conv, byte[] data)
+      {
+         msgData receivedData = msgData.FromBytes(data);
+         receivedData.conv = conv;
+         byte[] data2 = receivedData.ToBytes();
+         LogF8.LogNet($"TCP_SERVER receive data from conv: {conv} . Data: {receivedData.conv}  {receivedData.position}");
+         foreach (int item in ClientList)
+         {
+            if (item != conv) // 发送给其他客户端
+            {
+               tcpServerChannel.SendMessage(item, data2);
+            }
+         }
+      }
+      
+      void TcpServer_OnDisconnected(int conv)
+      {
+         LogF8.LogNet($"TCP_SERVER conv: {conv} Disconnected");
+         ClientList.Remove(conv);
+      }
+
+      private msgData _msgData = new msgData();
+      
+      /*----------------------------tcp/kcp客户端使用----------------------------*/
+      // 创建tcp通道
+      TcpClientChannel tcpClientChannel = new TcpClientChannel("TEST_TCP_CLIENT");
+      
+      void TcpClient_OnConnected()
+      {
+         LogF8.LogNet($"TCP_CLIENT Connected");
+         // 连接后每0.03333秒发信息
+         FF8.Timer.AddTimer(this, 0.03333f, 0f, -1, () =>
+         {
+            _msgData.conv = 0;
+            _msgData.position = transform.position;
+            byte[] data = _msgData.ToBytes();
+            tcpClientChannel.SendMessage(data);
+         });
+      }
+      
+      void TcpClient_OnDataReceived(byte[] data)
+      {
+         msgData receivedData = msgData.FromBytes(data);
+         LogF8.LogNet($"TCP_CLIENT receive data: {receivedData.conv}  {receivedData.position}");
+         if (PlayerPool.TryGetValue(receivedData.conv, out var value))
+         {
+            value.position = receivedData.position;
+         }
+         else
+         {
+            Transform tr = Instantiate(playerRole, receivedData.position, Quaternion.identity);
+            tr.localScale = Vector3.one * 0.1f;
+            PlayerPool.TryAdd(receivedData.conv, tr);
+         }
+      }
+      
+      void TcpClient_OnDisconnected()
+      {
+         LogF8.LogNet($"TCP_CLIENT Disconnected");
+      }
+      
+      
+      // 定义消息数据类
+      public class msgData
+      {
+         public int conv;
+         public Vector3 position;
+
+         // 将 msgData 对象转换为字节数组
+         public byte[] ToBytes()
+         {
+            byte[] convBytes = BitConverter.GetBytes(conv);
+            byte[] xBytes = BitConverter.GetBytes(position.x);
+            byte[] yBytes = BitConverter.GetBytes(position.y);
+            byte[] zBytes = BitConverter.GetBytes(position.z);
+
+            byte[] result = new byte[convBytes.Length + xBytes.Length + yBytes.Length + zBytes.Length];
+            Array.Copy(convBytes, 0, result, 0, convBytes.Length);
+            Array.Copy(xBytes, 0, result, convBytes.Length, xBytes.Length);
+            Array.Copy(yBytes, 0, result, convBytes.Length + xBytes.Length, yBytes.Length);
+            Array.Copy(zBytes, 0, result, convBytes.Length + xBytes.Length + yBytes.Length, zBytes.Length);
+
+            return result;
+         }
+
+         // 从字节数组创建 msgData 对象
+         public static msgData FromBytes(byte[] data)
+         {
+            int conv = BitConverter.ToInt32(data, 0);
+            float x = BitConverter.ToSingle(data, sizeof(int));
+            float y = BitConverter.ToSingle(data, sizeof(int) + sizeof(float));
+            float z = BitConverter.ToSingle(data, sizeof(int) + 2 * sizeof(float));
+
+            return new msgData
+            {
+               conv = conv,
+               position = new Vector3(x, y, z)
+            };
          }
       }
    }

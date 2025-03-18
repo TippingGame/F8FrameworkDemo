@@ -4,6 +4,7 @@ using F8Framework.Core;
 using F8Framework.Launcher;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.UI;
 
 public class DemoInitState : ProcedureNode
 {
@@ -37,6 +38,7 @@ public class DemoInitState : ProcedureNode
         ReadExcel.Instance.LoadAllExcelData();
 #endif
 
+        
         LogF8.Log(FF8.Config.GetroleByID(1).name);
             
         FF8.Asset.Load("IsometricSpriteAtlas");
@@ -46,6 +48,9 @@ public class DemoInitState : ProcedureNode
         {
             // 初始化
             FF8.UI.Initialize(_configs);
+            
+            FF8.UI.SetCanvasScaler(null, CanvasScaler.ScaleMode.ScaleWithScreenSize, referenceResolution: new Vector2(1920, 1080),
+                CanvasScaler.ScreenMatchMode.MatchWidthOrHeight, matchWidthOrHeight: 0f, referencePixelsPerUnit: 100f);
             
             FF8.UI.Open(DemoInitState.UIID.UISelectRole);
         });

@@ -121,7 +121,7 @@ public class UIGameView : BaseView
         
     void OnDownloadOverall(DonwloadUpdateEventArgs eventArgs)
     {
-        LogF8.Log(eventArgs.DownloadInfo.DownloadProgress);
+        // LogF8.Log(eventArgs.DownloadInfo.DownloadProgress);
         // 测试断点续传，暂停下载
         // if (eventArgs.DownloadInfo.DownloadProgress > 0.4f)
         // {

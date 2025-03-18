@@ -12337,6 +12337,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 1
   playerRole: {fileID: 768513663}
+  isServer: 0
 --- !u!210 &2076817853
 SortingGroup:
   m_ObjectHideFlags: 0
