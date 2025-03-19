@@ -1,0 +1,19 @@
+ManifestFileVersion: 0
+CRC: 3425857307
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 7ca43f7bb334f5658f82a93bbb2e77eb
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: c21d61fe394c58399df3c6fb5c7c99b3
+HashAppended: 0
+ClassTypes:
+- Class: 28
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/AssetBundles/Package_1/social_01_link_shadow.png
+Dependencies: []

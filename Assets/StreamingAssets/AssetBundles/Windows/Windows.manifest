@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 3006366247
+CRC: 2454683935
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -117,17 +117,29 @@ AssetBundleManifest:
       Name: ui/uitip
       Dependencies: {}
     Info_32:
-      Name: config/binconfigdata/item
+      Name: package_0/social_01_link
       Dependencies: {}
     Info_33:
-      Name: config/binconfigdata/localizedstrings
+      Name: package_1/social_01_link_shadow
       Dependencies: {}
     Info_34:
-      Name: config/binconfigdata/role
+      Name: package_2/social_02_share
       Dependencies: {}
     Info_35:
-      Name: config/binconfigdata/sheet1
+      Name: package_3/social_02_share_shadow
       Dependencies: {}
     Info_36:
+      Name: config/binconfigdata/item
+      Dependencies: {}
+    Info_37:
+      Name: config/binconfigdata/localizedstrings
+      Dependencies: {}
+    Info_38:
+      Name: config/binconfigdata/role
+      Dependencies: {}
+    Info_39:
+      Name: config/binconfigdata/sheet1
+      Dependencies: {}
+    Info_40:
       Name: config/binconfigdata/sheet2
       Dependencies: {}
