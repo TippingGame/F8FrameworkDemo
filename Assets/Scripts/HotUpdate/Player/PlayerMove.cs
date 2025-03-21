@@ -240,7 +240,7 @@ namespace Demo
       }
 
       private msgData _msgData = new msgData();
-      
+      int TimerId = 0;
       /*----------------------------tcp/kcp客户端使用----------------------------*/
       // 创建tcp通道
       TcpClientChannel tcpClientChannel = new TcpClientChannel("TEST_TCP_CLIENT");
@@ -249,7 +249,7 @@ namespace Demo
       {
          LogF8.LogNet($"TCP_CLIENT Connected");
          // 连接后每0.03333秒发信息
-         FF8.Timer.AddTimer(this, 0.03333f, 0f, -1, () =>
+         TimerId = FF8.Timer.AddTimer(this, 0.03333f, 0f, -1, () =>
          {
             _msgData.conv = 0;
             _msgData.position = transform.position;
@@ -277,6 +277,7 @@ namespace Demo
       void TcpClient_OnDisconnected()
       {
          LogF8.LogNet($"TCP_CLIENT Disconnected");
+         FF8.Timer.RemoveTimer(TimerId);
       }
       
       

@@ -14,8 +14,11 @@ public class DemoGameState : ProcedureNode
         
     public override void OnEnter(ProcedureProcessor processor)
     {
-        SceneManager.LoadScene("Main");
-        FF8.UI.Open(DemoInitState.UIID.UIGameView);
+        FF8.Asset.LoadAsync("Main", o =>
+        {
+            SceneManager.LoadScene("Main");
+            FF8.UI.Open(DemoInitState.UIID.UIGameView);
+        });
     }
     
     public override void OnExit(ProcedureProcessor processor)

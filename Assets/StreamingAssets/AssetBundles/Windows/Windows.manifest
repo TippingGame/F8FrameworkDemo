@@ -1,5 +1,5 @@
 ManifestFileVersion: 0
-CRC: 2454683935
+CRC: 970262910
 AssetBundleManifest:
   AssetBundleInfos:
     Info_0:
@@ -129,17 +129,47 @@ AssetBundleManifest:
       Name: package_3/social_02_share_shadow
       Dependencies: {}
     Info_36:
-      Name: config/binconfigdata/item
-      Dependencies: {}
+      Name: scenes/main
+      Dependencies:
+        Dependency_0: prefabs/tree_2
+        Dependency_1: prefabs/role_prefabs/chara_06
+        Dependency_2: prefabs/tree_1
     Info_37:
-      Name: config/binconfigdata/localizedstrings
+      Name: code/demolauncher
       Dependencies: {}
     Info_38:
-      Name: config/binconfigdata/role
+      Name: code/f8framework.core.dllby
       Dependencies: {}
     Info_39:
-      Name: config/binconfigdata/sheet1
+      Name: code/f8framework.f8exceldataclass
       Dependencies: {}
     Info_40:
+      Name: code/f8framework.launcher
+      Dependencies: {}
+    Info_41:
+      Name: code/hotupdate
+      Dependencies: {}
+    Info_42:
+      Name: code/mscorlib.dllby
+      Dependencies: {}
+    Info_43:
+      Name: code/system.core.dllby
+      Dependencies: {}
+    Info_44:
+      Name: code/system.dllby
+      Dependencies: {}
+    Info_45:
+      Name: config/binconfigdata/item
+      Dependencies: {}
+    Info_46:
+      Name: config/binconfigdata/localizedstrings
+      Dependencies: {}
+    Info_47:
+      Name: config/binconfigdata/role
+      Dependencies: {}
+    Info_48:
+      Name: config/binconfigdata/sheet1
+      Dependencies: {}
+    Info_49:
       Name: config/binconfigdata/sheet2
       Dependencies: {}

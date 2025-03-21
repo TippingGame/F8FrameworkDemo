@@ -94,6 +94,8 @@ namespace DemoLauncher
         // 开始游戏
         public void StartGame()
         {
+            LogF8.LogVersion("更新代码成功！");
+            
             FF8.Procedure.RunProcedureNode<DemoInitState>();
         }
 

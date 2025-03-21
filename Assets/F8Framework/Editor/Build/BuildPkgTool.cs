@@ -85,7 +85,12 @@ namespace F8Framework.Core.Editor
                 
                 if (assetMapping == null || resAssetMapping.Value.MD5 != assetMapping.MD5) // 新增资源，MD5不同则需更新
                 {
+                    if (F8Helper.AOTDllList.Contains(resAssetMapping.Key + "by")) // 忽略补充元数据Dll的更新
+                    {
+                        continue;
+                    }
                     generateAssetBundleMappings.TryAdd(resAssetMapping.Key, resAssetMapping.Value);
+                    assetBundleMappings[resAssetMapping.Key] = resAssetMapping.Value;
                 }
             }
             
@@ -102,8 +107,7 @@ namespace F8Framework.Core.Editor
                 remoteGameVersion.HotUpdateVersion.Add(toVersion);
             FileTools.SafeWriteAllText(gameVersionPath, Util.LitJson.ToJson(remoteGameVersion));
             
-            FileTools.SafeCopyFile(Application.dataPath + "/F8Framework/AssetMap/Resources/" + nameof(AssetBundleMap) + ".json",
-                hotUpdateMapPath);
+            FileTools.SafeWriteAllText(hotUpdateMapPath, Util.LitJson.ToJson(assetBundleMappings));
             
             LogF8.LogVersion("构建热更新包版本成功！版本：" + toVersion);
             
@@ -643,6 +647,12 @@ namespace F8Framework.Core.Editor
             
             string assetBundleMapPath = Application.dataPath + "/F8Framework/AssetMap/Resources/" + nameof(AssetBundleMap) + ".json";
             FileTools.SafeCopyFile(assetBundleMapPath, buildPath + HotUpdateManager.RemoteDirName + "/" + nameof(AssetBundleMap) + ".json");
+            
+            string hotUpdateMapPath = buildPath + HotUpdateManager.RemoteDirName + "/HotUpdate" + HotUpdateManager.Separator + nameof(AssetBundleMap) + ".json";
+            if (!File.Exists(hotUpdateMapPath))
+            {
+                FileTools.SafeCopyFile(assetBundleMapPath, hotUpdateMapPath);
+            }
             UnityEditor.AssetDatabase.Refresh();
         }
 
