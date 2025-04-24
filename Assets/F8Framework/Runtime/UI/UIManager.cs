@@ -440,7 +440,7 @@ namespace F8Framework.Core
                     _layerDialog.Close(config.AssetName, isDestroy);
                     break;
                 case LayerType.Notify:
-                    _layerNotify.CloseByGuid(guid, isDestroy);
+                    _layerNotify.CloseByGuid(guid, true);
                     break;
                 case LayerType.Guide:
                     _layerGuide.Close(config.AssetName, isDestroy);

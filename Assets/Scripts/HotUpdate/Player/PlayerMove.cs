@@ -27,7 +27,15 @@ namespace Demo
       public override void OnStateUpdate(IFSM<PlayerMove> fsm)
       {
       }
-    
+
+      public override void OnStateLateUpdate(IFSM<PlayerMove> fsm)
+      {
+      }
+
+      public override void OnStateFixedUpdate(IFSM<PlayerMove> fsm)
+      {
+      }
+
       public override void OnStateExit(IFSM<PlayerMove> fsm)
       {
       }
@@ -57,7 +65,15 @@ namespace Demo
       public override void OnStateUpdate(IFSM<PlayerMove> fsm)
       {
       }
-    
+
+      public override void OnStateLateUpdate(IFSM<PlayerMove> fsm)
+      {
+      }
+
+      public override void OnStateFixedUpdate(IFSM<PlayerMove> fsm)
+      {
+      }
+
       public override void OnStateExit(IFSM<PlayerMove> fsm)
       {
       }
