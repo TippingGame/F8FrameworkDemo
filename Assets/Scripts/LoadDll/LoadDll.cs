@@ -35,7 +35,22 @@ public class LoadDll : MonoBehaviour
         HotUpdate.StartHotUpdate(hotUpdateAssetUrl, () =>
         {
             LogF8.Log("完成");
-            // 先补充元数据（可选）
+            
+            StartCoroutine(LoadAssembliesCoroutine());
+           
+        }, () =>
+        {
+            LogF8.Log("失败");
+            
+        }, progress =>
+        {
+            LogF8.Log("进度：" + progress);
+        });
+    }
+
+    public IEnumerator LoadAssembliesCoroutine()
+    {
+ // 先补充元数据（可选）
             List<string> aotDllList = new List<string>
             {
                 "mscorlib.dll",
@@ -48,20 +63,30 @@ public class LoadDll : MonoBehaviour
 
             foreach (var aotDllName in aotDllList)
             {
-                byte[] dllBytes = AssetManager.Instance.Load<TextAsset>(aotDllName + "by").bytes;
+                BaseLoader load = AssetManager.Instance.LoadAsync<TextAsset>(aotDllName + "by");
+                yield return load;
+                byte[] dllBytes = load.GetAssetObject<TextAsset>().bytes;
                 LoadImageErrorCode err = HybridCLR.RuntimeApi.LoadMetadataForAOTAssembly(dllBytes, HomologousImageMode.SuperSet);
                 LogF8.Log($"LoadMetadataForAOTAssembly:{aotDllName}. ret:{err}");
             }
             
             // Editor环境下，HotUpdate.dll.bytes已经被自动加载，不需要加载，重复加载反而会出问题。
 #if !UNITY_EDITOR
-            TextAsset asset1 = AssetManager.Instance.Load<TextAsset>("F8Framework.F8ExcelDataClass");
+            BaseLoader load1 = AssetManager.Instance.LoadAsync<TextAsset>("F8Framework.F8ExcelDataClass");
+            yield return load1;
+            TextAsset asset1 = load1.GetAssetObject<TextAsset>();
             Assembly hotUpdateAss1 = Assembly.Load(asset1.bytes);
-            TextAsset asset2 = AssetManager.Instance.Load<TextAsset>("F8Framework.Launcher");
+            BaseLoader load2 = AssetManager.Instance.LoadAsync<TextAsset>("F8Framework.Launcher");
+            yield return load2;
+            TextAsset asset2 = load2.GetAssetObject<TextAsset>();
             Assembly hotUpdateAss2 = Assembly.Load(asset2.bytes);
-            TextAsset asset3 = AssetManager.Instance.Load<TextAsset>("DemoLauncher");
+            BaseLoader load3 = AssetManager.Instance.LoadAsync<TextAsset>("DemoLauncher");
+            yield return load3;
+            TextAsset asset3 = load3.GetAssetObject<TextAsset>();
             Assembly hotUpdateAss3 = Assembly.Load(asset3.bytes);
-            TextAsset asset4 = AssetManager.Instance.Load<TextAsset>("HotUpdate");
+            BaseLoader load4 = AssetManager.Instance.LoadAsync<TextAsset>("HotUpdate");
+            yield return load4;
+            TextAsset asset4 = load4.GetAssetObject<TextAsset>();
             Assembly hotUpdateAss4 = Assembly.Load(asset4.bytes);
 #else
             // Editor下无需加载，直接查找获得HotUpdate程序集
@@ -71,15 +96,26 @@ public class LoadDll : MonoBehaviour
             Assembly hotUpdateAss4 = System.AppDomain.CurrentDomain.GetAssemblies().First(a => a.GetName().Name == "HotUpdate");
 #endif
             Type type = hotUpdateAss3.GetType("DemoLauncher.DemoLauncher");
+            
             // 添加组件
             gameObject.AddComponent(type);
-        }, () =>
-        {
-            LogF8.Log("失败");
-            
-        }, progress =>
-        {
-            LogF8.Log("进度：" + progress);
-        });
+    }
+    
+    void Update()
+    {
+        // 更新模块
+        ModuleCenter.Update();
+    }
+
+    void LateUpdate()
+    {
+        // 更新模块
+        ModuleCenter.LateUpdate();
+    }
+
+    void FixedUpdate()
+    {
+        // 更新模块
+        ModuleCenter.FixedUpdate();
     }
 }

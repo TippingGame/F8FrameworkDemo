@@ -1,0 +1,34 @@
+ManifestFileVersion: 0
+CRC: 3282668671
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: c4be8441cfbf55be34031d6025b22829
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 3b20a8bd242c56e96dce1017f0c2dc06
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 4
+  Script: {instanceID: 0}
+- Class: 21
+  Script: {instanceID: 0}
+- Class: 48
+  Script: {instanceID: 0}
+- Class: 74
+  Script: {instanceID: 0}
+- Class: 91
+  Script: {instanceID: 0}
+- Class: 95
+  Script: {instanceID: 0}
+- Class: 212
+  Script: {instanceID: 0}
+- Class: 213
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/AssetBundles/Prefabs/Role_Prefabs/Chara_06.prefab
+Dependencies:
+- G:/Work/unity2021315f1pj/F8FrameworkDemo/Assets/../Bundles/AssetBundles/WebGL/textures/packforest01

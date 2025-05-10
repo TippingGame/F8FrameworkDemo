@@ -94,27 +94,9 @@ namespace DemoLauncher
         // 开始游戏
         public void StartGame()
         {
-            LogF8.LogVersion("更新代码成功！");
+            LogF8.LogVersion("更新代码成功！WebGL!");
             
             FF8.Procedure.RunProcedureNode<DemoInitState>();
-        }
-
-        void Update()
-        {
-            // 更新模块
-            ModuleCenter.Update();
-        }
-
-        void LateUpdate()
-        {
-            // 更新模块
-            ModuleCenter.LateUpdate();
-        }
-
-        void FixedUpdate()
-        {
-            // 更新模块
-            ModuleCenter.FixedUpdate();
         }
     }
 }

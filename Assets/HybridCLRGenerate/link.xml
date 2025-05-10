@@ -2,6 +2,7 @@
 <linker>
   <assembly fullname="F8Framework.Core">
     <type fullname="Ease" preserve="all" />
+    <type fullname="F8Framework.Core.AssetBundleManager" preserve="all" />
     <type fullname="F8Framework.Core.AssetManager" preserve="all" />
     <type fullname="F8Framework.Core.AssetManager/AssetAccessMode" preserve="all" />
     <type fullname="F8Framework.Core.AudioManager" preserve="all" />
@@ -56,6 +57,7 @@
     <type fullname="F8Framework.Core.Tween" preserve="all" />
     <type fullname="F8Framework.Core.UICallbacks" preserve="all" />
     <type fullname="F8Framework.Core.UIConfig" preserve="all" />
+    <type fullname="F8Framework.Core.UILoader" preserve="all" />
     <type fullname="F8Framework.Core.UIManager" preserve="all" />
     <type fullname="F8Framework.Core.UIRedDot" preserve="all" />
     <type fullname="F8Framework.Core.Util" preserve="all" />
@@ -63,11 +65,6 @@
     <type fullname="F8Framework.Core.Util/OptimizedAES" preserve="all" />
     <type fullname="F8Framework.Core.Util/Unity" preserve="all" />
     <type fullname="TweenExtension" preserve="all" />
-  </assembly>
-  <assembly fullname="System">
-    <type fullname="System.Collections.Generic.LinkedListNode`1" preserve="all" />
-    <type fullname="System.Collections.Generic.LinkedList`1" preserve="all" />
-    <type fullname="System.Collections.Generic.LinkedList`1/Enumerator" preserve="all" />
   </assembly>
   <assembly fullname="Unity.TextMeshPro">
     <type fullname="TMPro.TMP_Text" preserve="all" />
@@ -142,7 +139,7 @@
     <type fullname="UnityEngine.Networking.DownloadHandlerTexture" preserve="all" />
     <type fullname="UnityEngine.Networking.UnityWebRequestTexture" preserve="all" />
   </assembly>
-  <assembly fullname="mscorlib">
+  <assembly fullname="netstandard">
     <type fullname="System.Action" preserve="all" />
     <type fullname="System.Action`1" preserve="all" />
     <type fullname="System.Action`2" preserve="all" />
@@ -154,6 +151,9 @@
     <type fullname="System.Collections.Generic.IEnumerable`1" preserve="all" />
     <type fullname="System.Collections.Generic.IEnumerator`1" preserve="all" />
     <type fullname="System.Collections.Generic.KeyValuePair`2" preserve="all" />
+    <type fullname="System.Collections.Generic.LinkedListNode`1" preserve="all" />
+    <type fullname="System.Collections.Generic.LinkedList`1" preserve="all" />
+    <type fullname="System.Collections.Generic.LinkedList`1/Enumerator" preserve="all" />
     <type fullname="System.Collections.Generic.List`1" preserve="all" />
     <type fullname="System.Collections.IEnumerable" preserve="all" />
     <type fullname="System.Collections.IEnumerator" preserve="all" />

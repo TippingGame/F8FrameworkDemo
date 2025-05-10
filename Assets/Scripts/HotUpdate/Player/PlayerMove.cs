@@ -102,8 +102,11 @@ namespace Demo
          string name = FF8.Config.GetroleByID(GameDataModule.Instance.RoleId).name;
          
          Destroy(playerRole.gameObject);
-         
-         playerRole = Instantiate(FF8.Asset.Load<GameObject>(name), transform).transform;
+
+         FF8.Asset.LoadAsync<GameObject>(name, o =>
+         {
+            playerRole = Instantiate(o, transform).transform;
+         });
          
          
          // 创建两个状态
@@ -115,11 +118,11 @@ namespace Demo
          playerFSM.DefaultState = moveState;
          playerFSM.ChangeToDefaultState();
 
-         FF8.UI.Open(DemoInitState.UIID.UIAward);
-         FF8.UI.Open(DemoInitState.UIID.UIAward);
-         FF8.UI.Open(DemoInitState.UIID.UIAward);
-         FF8.UI.Open(DemoInitState.UIID.UIAward);
-         FF8.UI.Open(DemoInitState.UIID.UIAward);
+         FF8.UI.OpenAsync(DemoInitState.UIID.UIAward);
+         FF8.UI.OpenAsync(DemoInitState.UIID.UIAward);
+         FF8.UI.OpenAsync(DemoInitState.UIID.UIAward);
+         FF8.UI.OpenAsync(DemoInitState.UIID.UIAward);
+         FF8.UI.OpenAsync(DemoInitState.UIID.UIAward);
          
          // FF8.Input.SwitchDevice(new XboxInputDevice());
          

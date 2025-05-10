@@ -32,17 +32,24 @@ public class DemoInitState : ProcedureNode
         
     public override void OnEnter(ProcedureProcessor processor)
     {
-        FF8.Config.LoadAll();
+        Util.Unity.StartCoroutine(LoadAll());
+    }
+
+    IEnumerator LoadAll()
+    {
+        foreach (var item in FF8.Config.LoadAllAsync()) // 异步加载全部配置
+        {
+            yield return item;
+        }
 
 #if UNITY_EDITOR
         ReadExcel.Instance.LoadAllExcelData();
 #endif
-
         
         LogF8.Log(FF8.Config.GetroleByID(1).name);
             
-        FF8.Asset.Load("IsometricSpriteAtlas");
-            
+        yield return FF8.Asset.LoadAsync("IsometricSpriteAtlas");
+        
         // 加载文件夹内资产
         FF8.Asset.LoadDirAsync("Role_Textures", () =>
         {
@@ -52,14 +59,14 @@ public class DemoInitState : ProcedureNode
             FF8.UI.SetCanvasScaler(null, CanvasScaler.ScaleMode.ScaleWithScreenSize, referenceResolution: new Vector2(1920, 1080),
                 CanvasScaler.ScreenMatchMode.MatchWidthOrHeight, matchWidthOrHeight: 0f, referencePixelsPerUnit: 100f);
             
-            FF8.UI.Open(DemoInitState.UIID.UISelectRole);
+            FF8.UI.OpenAsync(DemoInitState.UIID.UISelectRole);
         });
-            
-        FF8.Audio.SetAudioMixer(FF8.Asset.Load<AudioMixer>("F8AudioMixer"));
-            
+
+        FF8.Asset.LoadAsync<AudioMixer>("F8AudioMixer", mixer => FF8.Audio.SetAudioMixer(mixer));
+        
         FF8.Audio.PlayMusic("02b Town Theme", null, true);
     }
-    
+
     public override void OnExit(ProcedureProcessor processor)
     {
             

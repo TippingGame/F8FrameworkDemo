@@ -14,8 +14,11 @@ public class RoleItem : BaseItem
     {
         _index = index;
         
-        ButtonLegacy_Button.transform.GetComponent<Image>().sprite = FF8.Asset.Load<Sprite>("PackForest_" + _index);
-        ButtonLegacy_Button.transform.GetComponent<Image>().SetNativeSize();
+        FF8.Asset.LoadAsync<Sprite>("PackForest_" + _index, sprite =>
+        {
+            ButtonLegacy_Button.transform.GetComponent<Image>().sprite = sprite;
+            ButtonLegacy_Button.transform.GetComponent<Image>().SetNativeSize();
+        });
         
         TextLegacy_TextLegacy.text = FF8.Config.GetroleByID(index).name;
     }

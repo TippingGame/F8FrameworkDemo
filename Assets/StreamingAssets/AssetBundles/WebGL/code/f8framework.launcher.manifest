@@ -1,0 +1,17 @@
+ManifestFileVersion: 0
+CRC: 2101859110
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 184fd21378d1b2e33cc8fd099db3aa4a
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 5ad585dd02dfb5016c0dad519eab8f49
+HashAppended: 0
+ClassTypes:
+- Class: 49
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers: []
+Assets:
+- Assets/AssetBundles/Code/F8Framework.Launcher.bytes
+Dependencies: []
