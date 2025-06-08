@@ -12,20 +12,20 @@ namespace F8Framework.Core
     public class AssetBundleLoader : BaseLoader
     {
         private string assetBundlePath = "";
-        private string abName = "";
+        public string abName = "";
         private Hash128 hash128;
         private readonly string keyword = URLSetting.AssetBundlesName + "/" + URLSetting.GetPlatformName() + "/";
-        private List<string> assetPaths = new List<string>();
+        public List<string> assetPaths = new List<string>();
         private AssetBundle assetBundleContent;
         private Object assetObject;
         private Dictionary<string, Object> assetObjects = new Dictionary<string, Object>();
 
-        private LoaderType loadType;
-        private LoaderType unloadType;
+        public LoaderType loadType;
+        public LoaderType unloadType;
 
-        private LoaderState assetBundleLoadState = LoaderState.NONE;
+        public LoaderState assetBundleLoadState = LoaderState.NONE;
         private LoaderState assetBundleExpandState = LoaderState.NONE;
-        private LoaderState assetBundleUnloadState = LoaderState.NONE;
+        public LoaderState assetBundleUnloadState = LoaderState.NONE;
 
         private AssetBundleCreateRequest assetBundleLoadRequest;
         private DownloadRequest assetBundleDownloadRequest;
@@ -36,9 +36,9 @@ namespace F8Framework.Core
         private event OnExpandFinished onExpandFinishedImpl;
         private event OnUnloadFinished onUnloadFinishedImpl;
 
-        private List<string> parentBundleNames = new List<string>();
+        public List<string> parentBundleNames = new List<string>();
 
-        private Dictionary<string, bool> dependentNames = new Dictionary<string, bool>();
+        public Dictionary<string, bool> dependentNames = new Dictionary<string, bool>();
         
         public override bool LoaderSuccess => assetBundleLoadState == LoaderState.FINISHED && assetBundleExpandState == LoaderState.FINISHED;
         
@@ -61,14 +61,14 @@ namespace F8Framework.Core
         /// <summary>
         /// 加载程序的状态枚举。
         /// </summary>
-        public enum LoaderState
+        public enum LoaderState : byte
         {
             NONE,
             WORKING,
             FINISHED
         }
 
-        private enum LoaderType
+        public enum LoaderType : byte
         {
             NONE,
             LOCAL_SYNC,
@@ -428,15 +428,15 @@ namespace F8Framework.Core
         /// </param>
         public virtual void Unload(bool unloadAllLoadedObjects = false)
         {
+            unloadType = LoaderType.LOCAL_SYNC;
             if (assetBundleContent != null)
             {
                 assetBundleContent.Unload(unloadAllLoadedObjects);
-                if (unloadAllLoadedObjects)
-                {
-                    ClearLoadedData();
-                }
             }
-
+            if (unloadAllLoadedObjects)
+            {
+                ClearLoadedData();
+            }
             assetBundleUnloadState = LoaderState.FINISHED;
         }
 

@@ -98,5 +98,23 @@ namespace DemoLauncher
             
             FF8.Procedure.RunProcedureNode<DemoInitState>();
         }
+        
+        void Update()
+        {
+            // 更新模块
+            ModuleCenter.Update();
+        }
+
+        void LateUpdate()
+        {
+            // 更新模块
+            ModuleCenter.LateUpdate();
+        }
+
+        void FixedUpdate()
+        {
+            // 更新模块
+            ModuleCenter.FixedUpdate();
+        }
     }
 }

@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 namespace F8Framework.Core
 {
-    public enum LayerType
+    public enum LayerType : byte
     {
         Game,
         UI,
@@ -180,7 +180,11 @@ namespace F8Framework.Core
         {
             if (EventSystem.current == null)
             {
-                LogF8.LogError("场景中缺少：EventSystem 组件");
+                LogF8.LogView("场景中缺少：EventSystem 组件，已自动添加");
+                GameObject eventSystem = new GameObject("EventSystem");
+                eventSystem.AddComponent<EventSystem>();
+                eventSystem.AddComponent<StandaloneInputModule>();
+                eventSystem.SetParent(transform);
             }
         }
 

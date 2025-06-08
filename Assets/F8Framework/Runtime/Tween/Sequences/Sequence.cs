@@ -5,7 +5,7 @@ using System.ComponentModel;
 
 namespace F8Framework.Core
 {
-	public enum PlayMode
+	public enum PlayMode : byte
 	{
 		Append,
 		Join
@@ -320,6 +320,7 @@ namespace F8Framework.Core
 		public override void Execute()
 		{
 			tween.ReplayReset();
+			tween.ClearOnCompleteSequence();
 			sequence.Append(tween);
 		}
 	}
@@ -336,6 +337,7 @@ namespace F8Framework.Core
 		public override void Execute()
 		{
 			tween.ReplayReset();
+			tween.ClearOnCompleteSequence();
 			sequence.Join(tween);
 		}
 	}

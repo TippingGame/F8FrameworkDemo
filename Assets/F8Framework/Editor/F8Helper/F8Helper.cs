@@ -63,37 +63,37 @@ namespace F8Framework.Core.Editor
         [MenuItem("开发工具/3: 生成并复制热更新Dll-F8", false, 210)]
         public static void GenerateCopyHotUpdateDll()
         {
-            F8EditorPrefs.SetBool("compilationFinishedHotUpdateDll", false);
-            HybridCLR.Editor.Commands.PrebuildCommand.GenerateAll();
-            
-            string outpath = Application.dataPath + "/AssetBundles/Code/";
-            
-            FileTools.SafeClearDir(outpath);
-            FileTools.CheckDirAndCreateWhenNeeded(outpath);
-            foreach (var dll in HybridCLR.Editor.SettingsUtil.HotUpdateAssemblyNamesExcludePreserved) // 获取HybridCLR设置面板的dll名称
-            {
-                var path =
-                    HybridCLR.Editor.SettingsUtil.GetHotUpdateDllsOutputDirByTarget(EditorUserBuildSettings
-                        .activeBuildTarget) + "/" + dll + ".dll";
-                FileTools.SafeCopyFile(
-                    HybridCLR.Editor.SettingsUtil.GetHotUpdateDllsOutputDirByTarget(EditorUserBuildSettings.activeBuildTarget) + "/" + dll + ".dll",
-                    outpath + dll + ".bytes");
-                LogF8.LogAsset("生成并复制热更新dll：" + dll);
-            }
-            
-            foreach (var aotDllName in F8Helper.AOTDllList)
-            {
-                var mscorlibsouPath =
-                    HybridCLR.Editor.SettingsUtil.GetAssembliesPostIl2CppStripDir(EditorUserBuildSettings
-                        .activeBuildTarget) + "/" + aotDllName;
-                
-                FileTools.SafeCopyFile(
-                    mscorlibsouPath,
-                    outpath + aotDllName + "by.bytes");
-                LogF8.LogAsset("生成并复制补充元数据dll：" + aotDllName);
-            }
-            
-            AssetDatabase.Refresh();
+            // F8EditorPrefs.SetBool("compilationFinishedHotUpdateDll", false);
+            // HybridCLR.Editor.Commands.PrebuildCommand.GenerateAll();
+            //
+            // string outpath = Application.dataPath + "/AssetBundles/Code/";
+            //
+            // FileTools.SafeClearDir(outpath);
+            // FileTools.CheckDirAndCreateWhenNeeded(outpath);
+            // foreach (var dll in HybridCLR.Editor.SettingsUtil.HotUpdateAssemblyNamesExcludePreserved) // 获取HybridCLR设置面板的dll名称
+            // {
+            //     var path =
+            //         HybridCLR.Editor.SettingsUtil.GetHotUpdateDllsOutputDirByTarget(EditorUserBuildSettings
+            //             .activeBuildTarget) + "/" + dll + ".dll";
+            //     FileTools.SafeCopyFile(
+            //         HybridCLR.Editor.SettingsUtil.GetHotUpdateDllsOutputDirByTarget(EditorUserBuildSettings.activeBuildTarget) + "/" + dll + ".dll",
+            //         outpath + dll + ".bytes");
+            //     LogF8.LogAsset("生成并复制热更新dll：" + dll);
+            // }
+            //
+            // foreach (var aotDllName in F8Helper.AOTDllList)
+            // {
+            //     var mscorlibsouPath =
+            //         HybridCLR.Editor.SettingsUtil.GetAssembliesPostIl2CppStripDir(EditorUserBuildSettings
+            //             .activeBuildTarget) + "/" + aotDllName;
+            //     
+            //     FileTools.SafeCopyFile(
+            //         mscorlibsouPath,
+            //         outpath + aotDllName + "by.bytes");
+            //     LogF8.LogAsset("生成并复制补充元数据dll：" + aotDllName);
+            // }
+            //
+            // AssetDatabase.Refresh();
         }
 
         [MenuItem("开发工具/2: Excel导表-F8", false, 205)]

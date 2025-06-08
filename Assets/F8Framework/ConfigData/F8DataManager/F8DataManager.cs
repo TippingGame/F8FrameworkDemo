@@ -148,13 +148,13 @@ namespace F8Framework.F8ExcelDataClass
 		}
 
 		[Preserve]
-		public void LoadAllAsyncCallback(Action onLoadComplete)
+		public void LoadAllAsyncCallback(Action onLoadComplete = null)
 		{
 			Util.Unity.StartCoroutine(LoadAllAsyncIEnumerator(onLoadComplete));
 		}
 
 		[Preserve]
-		public IEnumerator LoadAllAsyncIEnumerator(Action onLoadComplete)
+		public IEnumerator LoadAllAsyncIEnumerator(Action onLoadComplete = null)
 		{
 			yield return LoadAsync<Sheet1>("Sheet1", result => p_Sheet1 = result as Sheet1);
 			yield return LoadAsync<Sheet2>("Sheet2", result => p_Sheet2 = result as Sheet2);
