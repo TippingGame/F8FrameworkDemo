@@ -67,6 +67,10 @@ public class RoleItem : BaseItem
     // OnDisable
     private void OnDisable()
     {
+        if (_index == -1)
+        {
+            return;
+        }
         FF8.Asset.Unload("PackForest_" + _index, true);
     }
     
