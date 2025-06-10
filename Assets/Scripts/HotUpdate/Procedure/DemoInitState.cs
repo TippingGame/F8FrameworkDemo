@@ -48,6 +48,8 @@ public class DemoInitState : ProcedureNode
         
         LogF8.Log(FF8.Config.GetroleByID(1).name);
             
+        yield return FF8.Asset.LoadAsync("PackForest01");
+        
         yield return FF8.Asset.LoadAsync("IsometricSpriteAtlas");
         
         // 加载文件夹内资产

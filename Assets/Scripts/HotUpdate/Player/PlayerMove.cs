@@ -22,6 +22,10 @@ namespace Demo
          {
             animator.Play("Player_attack");
          }
+         else
+         {
+            animator = fsm.Owner.playerRole.GetComponent<Animator>();
+         }
       }
     
       public override void OnStateUpdate(IFSM<PlayerMove> fsm)
@@ -59,6 +63,10 @@ namespace Demo
          if (animator)
          {
             animator.Play("Player_move");
+         }
+         else
+         {
+            animator = fsm.Owner.playerRole.GetComponent<Animator>();
          }
       }
     
