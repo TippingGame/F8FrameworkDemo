@@ -50,8 +50,6 @@ namespace Demo
         {
             player.SetActive(true);
 
-            yield return FF8.Asset.LoadAsyncCoroutine<GameObject>("tree_1");
-            yield return FF8.Asset.LoadAsyncCoroutine<GameObject>("tree_2");
             yield return FF8.Asset.LoadAsyncCoroutine<PoolsPreset>("PoolsPreset");
             FF8.GameObjectPool.InstallPools(FF8.Asset.GetAssetObject<PoolsPreset>("PoolsPreset"));
             

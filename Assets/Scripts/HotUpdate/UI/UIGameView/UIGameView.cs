@@ -141,19 +141,19 @@ public class UIGameView : BaseView
     // 下载成功
     void OnDownloadSucess(DownloadSuccessEventArgs eventArgs)
     {
-        LogF8.Log($"DownloadSuccess {eventArgs.DownloadInfo.DownloadUrl}");
+        LogF8.Log($"下载成功 {eventArgs.DownloadInfo.DownloadUrl}");
     }
         
     // 下载失败
     void OnDownloadFailure(DownloadFailureEventArgs eventArgs)
     {
-        LogF8.LogError($"DownloadFailure {eventArgs.DownloadInfo.DownloadUrl}\n{eventArgs.ErrorMessage}");
+        LogF8.LogError($"下载失败或已经下载过了 {eventArgs.DownloadInfo.DownloadUrl}\n{eventArgs.ErrorMessage}");
     }
         
     // 所有下载完成
     void OnDownloadFinish(DownloadTasksCompletedEventArgs eventArgs)
     {
-        LogF8.Log($"DownloadFinish {eventArgs.TimeSpan}");
+        LogF8.Log($"下载完成 {eventArgs.TimeSpan}");
         
         string downloadPath = Application.dataPath + "/Logo_1.png";
         StartCoroutine(DownloadImage(downloadPath));
