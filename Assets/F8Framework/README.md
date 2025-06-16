@@ -19,7 +19,7 @@ F8 Framework是一个**优雅，轻量，符合直觉的**基于Unity引擎的�
 
 ## 支持版本
 Unity 2021、2022、2023、6000  
-构建可支持：Win / Android / iOS / Mac / Linux / WebGL / 微信小游戏（[构建文档](https://github.com/TippingGame/F8Framework/blob/main/Tests/SDKManager/README.md)）
+构建可支持：Win / Android / iOS / Mac / Linux / WebGL / 微信小游戏（[构建文档，Jenkins集成](https://github.com/TippingGame/F8Framework/blob/main/Tests/SDKManager/README.md)）
 
 ## 文档快速预览 - 1分钟
 ### ----------可选功能----------
@@ -98,11 +98,12 @@ git clone https://github.com/TippingGame/F8Framework.git
 
 
 ## 赞助
+###### (可备注留言你的主页链接)
 ![image](https://tippinggame-1257018413.cos.ap-guangzhou.myqcloud.com/TippingGame/Sponsorship_icon_356.png)
 ###### 感谢赞助
 
-| <img src='https://tippinggame-1257018413.cos.ap-guangzhou.myqcloud.com/TippingGame/Sponsor/yemaozi.png' width="38"/> 夜猫子 ￥8.88 | <img src='https://tippinggame-1257018413.cos.ap-guangzhou.myqcloud.com/TippingGame/Sponsor/fumeng.png' width="38"/> 浮梦 ￥6.6 |  |  |
-| --- |-----------------------------------------------------------------------------------------------------------------------------| --- | --- |
+| <img src='https://tippinggame-1257018413.cos.ap-guangzhou.myqcloud.com/TippingGame/Sponsor/yemaozi.png' width="38"/> 夜猫子 ￥8.88 | <img src='https://tippinggame-1257018413.cos.ap-guangzhou.myqcloud.com/TippingGame/Sponsor/fumeng.png' width="38"/> 浮梦 ￥6.6 | <img src='https://tippinggame-1257018413.cos.ap-guangzhou.myqcloud.com/TippingGame/Sponsor/WXanonymous.png' width="38"/> C*r ￥20 |  |
+| --- |-----------------------------------------------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------------------------| --- |
 
 ---
 

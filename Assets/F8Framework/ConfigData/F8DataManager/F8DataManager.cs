@@ -145,6 +145,12 @@ namespace F8Framework.F8ExcelDataClass
 			yield return LoadAsync<item>("item", result => p_item = result as item);
 			yield return LoadAsync<LocalizedStrings>("LocalizedStrings", result => p_LocalizedStrings = result as LocalizedStrings);
 			yield return LoadAsync<role>("role", result => p_role = result as role);
+#if UNITY_EDITOR
+			if (AssetManager.Instance.IsEditorMode)
+			{
+				ReadExcel.Instance.LoadAllExcelData();
+			}
+#endif
 		}
 
 		[Preserve]
@@ -161,6 +167,12 @@ namespace F8Framework.F8ExcelDataClass
 			yield return LoadAsync<item>("item", result => p_item = result as item);
 			yield return LoadAsync<LocalizedStrings>("LocalizedStrings", result => p_LocalizedStrings = result as LocalizedStrings);
 			yield return LoadAsync<role>("role", result => p_role = result as role);
+#if UNITY_EDITOR
+			if (AssetManager.Instance.IsEditorMode)
+			{
+				ReadExcel.Instance.LoadAllExcelData();
+			}
+#endif
 			onLoadComplete?.Invoke();
 		}
 

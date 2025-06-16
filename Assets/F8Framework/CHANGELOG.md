@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.7.153] - 2025-06-16
+1.修复加载AssetBundleManifest时被错误返回的问题  
+
+## [1.7.152] - 2025-06-15
+1.新增更多的可构建平台  
+2.新增构建时可修改Android平台下的签名信息，构建aab包选项  
+
+## [1.7.151] - 2025-06-13
+1.#35 新增Jenkins构建支持，使用接口JenkinsLoadAllExcelData，JenkinsAllScriptsReloaded，JenkinsBuild  
+
+## [1.7.150] - 2025-06-12
+1.修复编辑器模式下加载资产await状态没重置的问题  
+2.优化编辑器模式下修改配置表后无需手动导表  
+
 ## [1.7.149] - 2025-06-10
 1.修复热更新后没重新加载AssetBundleManifest的问题  
 
