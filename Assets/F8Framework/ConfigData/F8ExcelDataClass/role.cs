@@ -20,6 +20,7 @@ namespace F8Framework.F8ExcelDataClass
 	[Serializable]
 	public class role
 	{
+		[Preserve]
 		public Dictionary<System.Int32, roleItem> Dict = new Dictionary<System.Int32, roleItem>();
 	}
 }

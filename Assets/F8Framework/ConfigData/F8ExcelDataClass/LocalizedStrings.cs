@@ -24,6 +24,7 @@ namespace F8Framework.F8ExcelDataClass
 	[Serializable]
 	public class LocalizedStrings
 	{
+		[Preserve]
 		public Dictionary<System.Int32, LocalizedStringsItem> Dict = new Dictionary<System.Int32, LocalizedStringsItem>();
 	}
 }
