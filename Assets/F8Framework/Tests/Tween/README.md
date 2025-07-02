@@ -1,11 +1,11 @@
 # F8 Tween
 
 [![license](http://img.shields.io/badge/license-MIT-green.svg)](https://opensource.org/licenses/MIT) 
-[![Unity Version](https://img.shields.io/badge/unity-2021.3.15f1-blue)](https://unity.com) 
+[![Unity Version](https://img.shields.io/badge/unity-2021|2022|2023|6000-blue)](https://unity.com) 
 [![Platform](https://img.shields.io/badge/platform-Win%20%7C%20Android%20%7C%20iOS%20%7C%20Mac%20%7C%20Linux%20%7C%20WebGL-orange)]() 
 
 ## 简介（希望自己点击F8，就能开始制作游戏，不想多余的事）
-Unity F8 Tween组件，补间动画，播放/终止动画，有旋转/位移/缩放/渐变/填充动画，为UI设计的相对布局位移动画  
+Unity F8 Tween组件，补间动画，播放/终止动画，**自由组合**动画，有旋转/位移/缩放/渐变/填充/震动动画，可根据UI的**相对布局**位移动画。  
 
 ## 导入插件（需要首先导入核心）
 注意！内置在->F8Framework核心：https://github.com/TippingGame/F8Framework.git  
@@ -48,19 +48,20 @@ void Start()
     gameObject.ShakeScale(Vector3.one);
     gameObject.ShakePositionAtSpeed(Vector3.one, shakeCount: 8, speed: 5f, fadeOut: false);
 
-    // 设置Delay
-    gameObject.Move(Vector3.one, 1f).SetDelay(2f);
-    
-    // 设置Event，在动画的某一时间调用
-    gameObject.Move(Vector3.one, 5f).SetEvent(OnViewOpen, 2.5f);
-    
-    // 设置循环类型，循环次数
-    gameObject.Move(Vector3.one, 1f).SetLoopType(LoopType.Yoyo, 3);
+    // 链式调用
+    gameObject.Move(Vector3.one, 1f)
+        .SetEase(Ease.EaseOutQuad) // 设置Ease
+        .SetOnComplete(OnViewOpen) // 设置完成回调
+        .SetDelay(2f) // 设置Delay
+        .SetEvent(OnViewOpen, 2.5f) // 设置Event，在动画的某一时间调用
+        .SetLoopType(LoopType.Yoyo, 3) // 设置循环类型（Restart，Flip，Incremental，Yoyo），循环次数
+        .SetUpdateMode(UpdateMode.Update) // 设置Update模式，默认为Update
+        .SetOwner(gameObject) // 设置动画拥有者
+        .SetIsPause(false); // 设置是否暂停
     
     // 设置是否暂停
-    gameObject.Move(Vector3.one, 1f).SetIsPause(true);
     FF8.Tween.SetIsPause(id, true);
-    
+        
     // 你也可以这样使用，设置OnUpdate
     // 数字缓动变化
     BaseTween valueTween = FF8.Tween.ValueTween(0f, 100f, 3f).SetOnUpdateFloat((float v) =>

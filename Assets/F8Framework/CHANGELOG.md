@@ -1,5 +1,16 @@
 # Changelog
 
+## [1.7.160] - 2025-07-03
+1.优化GUID方法  
+2.优化警告打印  
+
+## [1.7.159] - 2025-06-28
+1.优化Timer模块使用对象池  
+2.优化Tween模块遍历，FixedUpdate使用fixedDeltaTime  
+
+## [1.7.158] - 2025-06-27
+1.Improve English documentation  
+
 ## [1.7.157] - 2025-06-21
 1.修复配置表容器类使用enum作为参数时报错的问题  
 
