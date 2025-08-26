@@ -324,7 +324,8 @@ namespace F8Framework.Core
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
 #endif
-            foreach (F8GameObjectPool pool in AllPoolsMap.Values)
+            var pools = new List<F8GameObjectPool>(AllPoolsMap.Values);
+            foreach (F8GameObjectPool pool in pools)
             {
                 action.Invoke(pool);
             }
@@ -341,7 +342,8 @@ namespace F8Framework.Core
             if (action == null)
                 throw new ArgumentNullException(nameof(action));
 #endif
-            foreach (Poolable poolable in ClonesMap.Values)
+            var clones = new List<Poolable>(ClonesMap.Values);
+            foreach (Poolable poolable in clones)
             {
                 action.Invoke(poolable._gameObject);
             }
@@ -1070,6 +1072,10 @@ namespace F8Framework.Core
         private void InvokeCallbacks<T>(GameObject gameObject, CallbacksType callbacksType,
             Action<T> poolableCallback, List<T> listForComponentsCaching, string messageKey)
         {
+            if (gameObject == null)
+            {
+                return;
+            }
             switch (callbacksType)
             {
                 case CallbacksType.Interfaces:
@@ -1096,6 +1102,10 @@ namespace F8Framework.Core
         private void InvokeGameObjectPoolEvents<T>(GameObject gameObject, List<T> listForComponentCaching,
             Action<T> callback, bool inChildren)
         {
+            if (gameObject == null)
+            {
+                return;
+            }
             if (inChildren)
                 gameObject.GetComponentsInChildren(listForComponentCaching);
             else
@@ -1152,7 +1162,8 @@ namespace F8Framework.Core
             if (PersistentPoolsMap.Count == 0)
                 return;
 
-            foreach (F8GameObjectPool persistentPool in PersistentPoolsMap.Values)
+            var pools = new List<F8GameObjectPool>(PersistentPoolsMap.Values);
+            foreach (F8GameObjectPool persistentPool in pools)
             {
                 persistentPool.DespawnAllClones();
             }
