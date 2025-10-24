@@ -13,6 +13,18 @@ MonoBehaviour:
   m_Name: F8EditorConfig
   m_EditorClassIdentifier: 
   entries:
+  - key: playmodeplus-lastScene
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 0
+  - key: IsEditorMode
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 0
   - key: LocalizationSettings
     stringValue: 
     intValue: 0
@@ -25,12 +37,6 @@ MonoBehaviour:
     floatValue: 0
     boolValue: 0
     valueType: 4
-  - key: playmodeplus-lastScene
-    stringValue: 
-    intValue: 0
-    floatValue: 0
-    boolValue: 0
-    valueType: 0
   - key: compilationFinishedHotUpdateDll
     stringValue: 
     intValue: 0

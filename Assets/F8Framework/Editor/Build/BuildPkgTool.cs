@@ -13,6 +13,8 @@ namespace F8Framework.Core.Editor
     {
         private static readonly GUILayoutOption NormalWidth = GUILayout.Width(100);
         private static readonly GUILayoutOption ButtonHeight = GUILayout.Height(20);
+        private static readonly GUILayoutOption BigNormalWidth = GUILayout.Width(140);
+        private static readonly GUILayoutOption BigButtonHeight = GUILayout.Height(35);
         private static string _prefBuildPathKey = "PrefBuildPathKey";
         private static string _exportPlatformKey = "ExportPlatformKey";
         private static string _exportCurrentPlatformKey = "ExportCurrentPlatformKey";
@@ -35,6 +37,7 @@ namespace F8Framework.Core.Editor
         public static string EnableFullPathAssetLoadingKey = "FullPathAssetLoadingKey";
         public static string EnableFullPathExtensionAssetLoadingKey = "FullPathExtensionAssetLoadingKey";
         private static string _excelPathKey = "ExcelPath";
+        public static string ConvertExcelToOtherFormatsKey = "ConvertExcelToOtherFormatsKey";
         
         private static string _buildPath = "";
         private static string _toVersion = "1.0.0";
@@ -49,6 +52,8 @@ namespace F8Framework.Core.Editor
         private static bool _enableFullPathAssetLoading = false;
         private static bool _enableFullPathExtensionAssetLoading = false;
         private static string _excelPath = "";
+        private static string _convertExcelToOtherFormats = "json";
+        public static string[] ExcelToOtherFormats = { "json", "binary" };
         
         private static BuildTarget _buildTarget = BuildTarget.NoTarget;
 
@@ -165,10 +170,20 @@ namespace F8Framework.Core.Editor
                                       HotUpdateManager.Separator + nameof(AssetBundleMap) + ".json";
             if (!File.Exists(gameVersionPath) || !File.Exists(assetBundleMapPath))
             {
+                EditorUtility.DisplayDialog("注意！！！", "\n请先构建一个游戏版本，再构建热更新文件！~", "确定");
                 LogF8.LogError("请先构建一个游戏版本，再构建热更新文件！~");
                 return;
             }
 
+            GameVersion remoteGameVersion = Util.LitJson.ToObject<GameVersion>(FileTools.SafeReadAllText(gameVersionPath));
+            int result = GameConfig.CompareVersions(toVersion, remoteGameVersion.Version);
+            if (result <= 0)
+            {
+                EditorUtility.DisplayDialog("注意！！！", "\n热更新版本必须大于当前游戏版本！~", "确定");
+                LogF8.LogError("热更新版本必须大于当前游戏版本！~");
+                return;
+            }
+            
             var resAssetBundleMappings = Util.LitJson.ToObject<Dictionary<string, AssetBundleMap.AssetMapping>>(Resources.Load<TextAsset>(nameof(AssetBundleMap)).ToString());
 
             var assetBundleMappings = Util.LitJson.ToObject<Dictionary<string, AssetBundleMap.AssetMapping>>(FileTools.SafeReadAllText(assetBundleMapPath));
@@ -200,8 +215,7 @@ namespace F8Framework.Core.Editor
             FileTools.SafeClearDir(hotUpdatePath);
             CopyHotUpdateAb(URLSetting.GetAssetBundlesStreamPath(), generateAssetBundleMappings,
                 hotUpdatePath);
-
-            GameVersion remoteGameVersion = Util.LitJson.ToObject<GameVersion>(FileTools.SafeReadAllText(gameVersionPath));
+            
             remoteGameVersion.Version = toVersion;
             if (!remoteGameVersion.HotUpdateVersion.Contains(toVersion))
                 remoteGameVersion.HotUpdateVersion.Add(toVersion);
@@ -626,6 +640,27 @@ namespace F8Framework.Core.Editor
             GUILayout.EndHorizontal();
             GUILayout.Space(10);
             
+            if (F8EditorPrefs.GetString(ConvertExcelToOtherFormatsKey, "").IsNullOrEmpty())
+            {
+                F8EditorPrefs.SetString(ConvertExcelToOtherFormatsKey, ExcelToOtherFormats[0]);
+            }
+            
+            int currentIndex = Array.FindIndex(ExcelToOtherFormats, format => 
+                format == F8EditorPrefs.GetString(ConvertExcelToOtherFormatsKey, _convertExcelToOtherFormats));
+            
+            GUILayout.BeginHorizontal();
+            EditorGUILayout.LabelField("选择配置表格式：", GUILayout.Width(120));
+            int selectedIndex = EditorGUILayout.Popup(currentIndex, ExcelToOtherFormats);
+            GUILayout.EndHorizontal();
+            
+            if (selectedIndex != currentIndex)
+            {
+                _convertExcelToOtherFormats = ExcelToOtherFormats[selectedIndex];
+                F8EditorPrefs.SetString(ConvertExcelToOtherFormatsKey, _convertExcelToOtherFormats);
+            }
+            
+            GUILayout.Space(10);
+            
             bool enableFullPathAssetLoading = F8EditorPrefs.GetBool(EnableFullPathAssetLoadingKey, false);
             _enableFullPathAssetLoading = EditorGUILayout.Toggle("启用完整资源路径加载", enableFullPathAssetLoading);
             if (enableFullPathAssetLoading != _enableFullPathAssetLoading)
@@ -754,11 +789,12 @@ namespace F8Framework.Core.Editor
                 F8EditorPrefs.SetBool(_enableNullPackageKey, _enableNullPackage);
             }
             GUILayout.EndHorizontal();
+            GUILayout.Space(5);
+            GUILayout.Box("", GUILayout.Height(2), GUILayout.ExpandWidth(true));
             GUILayout.Space(10);
-            
 
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("打包游戏", NormalWidth))
+            if (GUILayout.Button("打包游戏", BigNormalWidth, BigButtonHeight))
             {
                 if (string.IsNullOrEmpty(_buildPath))
                 {
@@ -778,7 +814,7 @@ namespace F8Framework.Core.Editor
             }
 
             GUILayout.Space(30);
-            if (GUILayout.Button("构建热更新包", NormalWidth))
+            if (GUILayout.Button("构建热更新包", BigNormalWidth, BigButtonHeight))
             {
                 if (string.IsNullOrEmpty(_buildPath))
                 {
@@ -797,7 +833,7 @@ namespace F8Framework.Core.Editor
             }
             
             GUILayout.Space(30);
-            if (GUILayout.Button("打开输出目录", NormalWidth))
+            if (GUILayout.Button("打开输出目录", BigNormalWidth, BigButtonHeight))
             {
                 Process.Start(Path.GetFullPath(_buildPath));
             }
@@ -806,7 +842,7 @@ namespace F8Framework.Core.Editor
             
             GUILayout.Space(10);
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button("打包游戏并运行", NormalWidth))
+            if (GUILayout.Button("打包游戏并运行", BigNormalWidth, BigButtonHeight))
             {
                 if (string.IsNullOrEmpty(_buildPath))
                 {
@@ -825,9 +861,9 @@ namespace F8Framework.Core.Editor
                 }
             }
             
-            GUILayout.Space(163);
+            GUILayout.Space(203);
             
-            if (GUILayout.Button("打开沙盒目录", NormalWidth))
+            if (GUILayout.Button("打开沙盒目录", BigNormalWidth, BigButtonHeight))
             {
                 System.Diagnostics.Process.Start(Application.persistentDataPath);
             }
