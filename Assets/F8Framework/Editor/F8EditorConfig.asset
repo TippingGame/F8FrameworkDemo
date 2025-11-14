@@ -19,12 +19,6 @@ MonoBehaviour:
     floatValue: 0
     boolValue: 0
     valueType: 0
-  - key: IsEditorMode
-    stringValue: 
-    intValue: 0
-    floatValue: 0
-    boolValue: 0
-    valueType: 0
   - key: LocalizationSettings
     stringValue: 
     intValue: 0
@@ -37,6 +31,18 @@ MonoBehaviour:
     floatValue: 0
     boolValue: 0
     valueType: 4
+  - key: ExcelPath
+    stringValue: G:/Work/unity2021315f1pj/F8FrameworkDemo/Assets/StreamingAssets/config
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 1
+  - key: ConvertExcelToOtherFormatsKey
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 0
   - key: compilationFinishedHotUpdateDll
     stringValue: 
     intValue: 0
@@ -49,6 +55,24 @@ MonoBehaviour:
     floatValue: 0
     boolValue: 0
     valueType: 4
+  - key: FullPathAssetLoadingKey
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 0
+  - key: FullPathExtensionAssetLoadingKey
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 0
+  - key: ToVersionKey
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 0
   - key: compilationFinishedBuildPkg
     stringValue: 
     intValue: 0
