@@ -8,11 +8,9 @@ namespace F8Framework.Core
 {
     public static class UGUIExts
     {
-        public static Button AddButtonClickListener(this Button @this, UnityAction<BaseEventData> handle)
+        public static UIBehaviour AddButtonClickListener(this UIBehaviour @this, UnityAction<BaseEventData> handle)
         {
             var eventTrigger = @this.gameObject.GetOrAddComponent<EventTrigger>();
-            if (handle == null)
-                throw new ArgumentNullException(nameof(handle));
             EventTrigger.Entry entry = eventTrigger.triggers.Find(e => e.eventID == EventTriggerType.PointerClick);
             if (entry == null)
             {
@@ -22,11 +20,10 @@ namespace F8Framework.Core
             entry.callback.AddListener(handle);
             return @this;
         }
-        public static Button AddButtonDownListener(this Button @this, UnityAction<BaseEventData> handle)
+        
+        public static UIBehaviour AddButtonDownListener(this UIBehaviour @this, UnityAction<BaseEventData> handle)
         {
             var eventTrigger = @this.gameObject.GetOrAddComponent<EventTrigger>();
-            if (handle == null)
-                throw new ArgumentNullException(nameof(handle));
             EventTrigger.Entry entry = eventTrigger.triggers.Find(e => e.eventID == EventTriggerType.PointerDown);
             if (entry == null)
             {
@@ -36,11 +33,10 @@ namespace F8Framework.Core
             entry.callback.AddListener(handle);
             return @this;
         }
-        public static Button AddButtonUpListener(this Button @this, UnityAction<BaseEventData> handle)
+        
+        public static UIBehaviour AddButtonUpListener(this UIBehaviour @this, UnityAction<BaseEventData> handle)
         {
             var eventTrigger = @this.gameObject.GetOrAddComponent<EventTrigger>();
-            if (handle == null)
-                throw new ArgumentNullException(nameof(handle));
             EventTrigger.Entry entry = eventTrigger.triggers.Find(e => e.eventID == EventTriggerType.PointerUp);
             if (entry == null)
             {
@@ -50,11 +46,10 @@ namespace F8Framework.Core
             entry.callback.AddListener(handle);
             return @this;
         }
-        public static Button AddListener(this Button @this, EventTriggerType triggerType, UnityAction<BaseEventData> handle)
+        
+        public static UIBehaviour AddListener(this UIBehaviour @this, EventTriggerType triggerType, UnityAction<BaseEventData> handle)
         {
             var eventTrigger = @this.gameObject.GetOrAddComponent<EventTrigger>();
-            if (handle == null)
-                throw new ArgumentNullException(nameof(handle));
             EventTrigger.Entry entry = eventTrigger.triggers.Find(e => e.eventID == triggerType);
             if (entry == null)
             {
@@ -64,40 +59,92 @@ namespace F8Framework.Core
             entry.callback.AddListener(handle);
             return @this;
         }
-        public static Button RemoveListener(this Button @this, EventTriggerType triggerType, UnityAction<BaseEventData> handle)
+        
+        // 便捷移除方法
+        public static UIBehaviour RemoveButtonClickListener(this UIBehaviour @this, UnityAction<BaseEventData> handle)
         {
-            var eventTrigger = @this.gameObject.GetOrAddComponent<EventTrigger>();
-            if (handle == null)
-                throw new ArgumentNullException(nameof(handle));
-            EventTrigger.Entry entry = eventTrigger.triggers.Find(e => e.eventID == triggerType);
+            return @this.RemoveListener(EventTriggerType.PointerClick, handle);
+        }
+        
+        public static UIBehaviour RemoveButtonDownListener(this UIBehaviour @this, UnityAction<BaseEventData> handle)
+        {
+            return @this.RemoveListener(EventTriggerType.PointerDown, handle);
+        }
+        
+        public static UIBehaviour RemoveButtonUpListener(this UIBehaviour @this, UnityAction<BaseEventData> handle)
+        {
+            return @this.RemoveListener(EventTriggerType.PointerUp, handle);
+        }
+        
+        // 移除特定类型的所有监听器
+        public static UIBehaviour RemoveAllButtonClickListeners(this UIBehaviour @this)
+        {
+            return @this.RemoveAllListeners(EventTriggerType.PointerClick);
+        }
+        
+        public static UIBehaviour RemoveAllButtonDownListeners(this UIBehaviour @this)
+        {
+            return @this.RemoveAllListeners(EventTriggerType.PointerDown);
+        }
+        
+        public static UIBehaviour RemoveAllButtonUpListeners(this UIBehaviour @this)
+        {
+            return @this.RemoveAllListeners(EventTriggerType.PointerUp);
+        }
+        
+        // 移除所有事件类型的所有监听器
+        public static UIBehaviour RemoveAllEventListeners(this UIBehaviour @this)
+        {
+            var eventTrigger = @this.GetComponent<EventTrigger>();
+            if (eventTrigger != null)
+            {
+                foreach (var entry in eventTrigger.triggers)
+                {
+                    entry.callback.RemoveAllListeners();
+                }
+                eventTrigger.triggers.Clear();
+            }
+            return @this;
+        }
+        
+        // 移除EventTrigger组件
+        public static UIBehaviour RemoveEventTrigger(this UIBehaviour @this)
+        {
+            var eventTrigger = @this.GetComponent<EventTrigger>();
+            if (eventTrigger != null)
+            {
+                UnityEngine.Object.Destroy(eventTrigger);
+            }
+            return @this;
+        }
+        
+        public static UIBehaviour RemoveListener(this UIBehaviour @this, EventTriggerType triggerType, UnityAction<BaseEventData> handle)
+        {
+            var eventTrigger = @this.GetComponent<EventTrigger>();
+            EventTrigger.Entry entry = eventTrigger?.triggers.Find(e => e.eventID == triggerType);
             entry?.callback.RemoveListener(handle);
             return @this;
         }
-        public static Button RemoveAllListeners(this Button @this, EventTriggerType triggerType)
+        
+        public static UIBehaviour RemoveAllListeners(this UIBehaviour @this, EventTriggerType triggerType)
         {
             var eventTrigger = @this.GetComponent<EventTrigger>();
-            if (eventTrigger == null)
-                throw new ArgumentNullException(nameof(eventTrigger));
-            EventTrigger.Entry entry = eventTrigger.triggers.Find(e => e.eventID == triggerType);
+            EventTrigger.Entry entry = eventTrigger?.triggers.Find(e => e.eventID == triggerType);
             entry?.callback.RemoveAllListeners();
             return @this;
         }
+        
         public static void EnableImage(this Image @this)
         {
-            if (@this != null)
-            {
-                var c = @this.color;
-                @this.color = new Color(c.r, c.g, c.b, 1);
-            }
+            var c = @this.color;
+            @this.color = new Color(c.r, c.g, c.b, 1);
         }
+        
         public static void DisableImage(this Image @this)
         {
-            if (@this != null)
-            {
-                var c = @this.color;
-                @this.sprite = null;
-                @this.color = new Color(c.r, c.g, c.b, 0);
-            }
+            var c = @this.color;
+            @this.sprite = null;
+            @this.color = new Color(c.r, c.g, c.b, 0);
         }
     }
 }

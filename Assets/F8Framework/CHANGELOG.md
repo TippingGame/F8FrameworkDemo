@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.8.192] - 2025-11-17
+1.优化Excel可在导表时打开  
+
+## [1.8.191] - 2025-11-17
+1.新增Excel库可使用byte[]参数读取方法  
+2.新增APK下可同步读取资源SyncStreamingAssetsLoader  
+3.优化PlayerPrefs Editor界面修改参数后可及时保存  
+
+## [1.8.190] - 2025-11-16
+1.新增UI模块BaseView模板的UI组件监听函数ButtonEvent和ValueChange  
+2.修复Audio模块切换Music播放暂停没有Play的问题  
+
 ## [1.8.189] - 2025-11-14
 1.修复Excel库读取.xls文档时报错的问题  
 2.修复Excel库读取.xlsx文档时引用其他表的单元格失效的问题  

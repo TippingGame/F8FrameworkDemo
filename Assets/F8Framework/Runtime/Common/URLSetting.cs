@@ -16,12 +16,17 @@ namespace F8Framework.Core
 
         public static string GetAssetBundlesOutPath()
         {
-            return Application.dataPath + "/../Bundles/" + AssetBundlesName + "/" + GetPlatformName();
+            return FileTools.FormatToUnityPath(FileTools.TruncatePath(Application.dataPath, 1)) + "/Bundles/" + AssetBundlesName + "/" + GetPlatformName();
         }
 
         public static string GetAssetBundlesStreamPath()
         {
             return Application.dataPath + "/StreamingAssets/" + AssetBundlesName + "/" + GetPlatformName();
+        }
+        
+        public static string GetTempExcelPath()
+        {
+            return FileTools.FormatToUnityPath(FileTools.TruncatePath(Application.dataPath, 1)) + "/temp_Excel";
         }
 
         public static string GetPlatformName()
@@ -79,7 +84,7 @@ namespace F8Framework.Core
 #if UNITY_EDITOR || UNITY_STANDALONE
         public static string CS_STREAMINGASSETS_URL = Application.streamingAssetsPath + "/";
 #elif UNITY_ANDROID
-        public static string CS_STREAMINGASSETS_URL = "null";
+        public static string CS_STREAMINGASSETS_URL = string.Empty;
 #elif UNITY_IPHONE || UNITY_IOS
         public static string CS_STREAMINGASSETS_URL = Application.streamingAssetsPath + "/";
 #elif UNITY_WEBGL
