@@ -1,5 +1,14 @@
 # Changelog
 
+## [2.1.219] - 2025-12-16
+1.优化Litjson字典Key支持所有基础和枚举类型  
+
+## [2.1.218] - 2025-12-12
+1.修复ExcelTool模块使用枚举作为字典Key值报错的问题  
+2.修复ExcelTool模块容器类型之间嵌套报错的问题  
+3.优化ExcelTool默认导表为binary类型  
+4.完善文档  
+
 ## [2.0.217] - 2025-12-07
 1.修复LoadScene，LoadSceneAsync加载场景失败的问题  
 
