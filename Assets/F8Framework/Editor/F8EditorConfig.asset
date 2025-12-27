@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   entries:
   - key: playmodeplus-lastScene
-    stringValue: 
+    stringValue: Assets/Scenes/Launcher.unity
     intValue: 0
     floatValue: 0
     boolValue: 0
-    valueType: 0
+    valueType: 1
   - key: LocalizationSettings
     stringValue: 
     intValue: 0
@@ -91,3 +91,21 @@ MonoBehaviour:
     floatValue: 0
     boolValue: 0
     valueType: 4
+  - key: ForceRebuildAssetBundleKey
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 0
+  - key: IsEditorMode
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 0
+  - key: CurrentLanguage
+    stringValue: '{"currentLanguageName":"ChineseSimplified"}'
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 1

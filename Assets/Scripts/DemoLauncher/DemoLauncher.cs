@@ -30,20 +30,18 @@ namespace DemoLauncher
             FF8.FSM = ModuleCenter.CreateModule<FSMManager>();
             FF8.GameObjectPool = ModuleCenter.CreateModule<GameObjectPool>();
             FF8.Asset = ModuleCenter.CreateModule<AssetManager>();
-#if UNITY_WEBGL
-            yield return AssetBundleManager.Instance.LoadAssetBundleManifest(); // WebGL专用
-#endif
+            yield return AssetBundleManager.Instance.LoadAssetBundleManifest(); // 加载 AssetBundleManifest，必须在 AssetManager 模块下面
             FF8.Config = ModuleCenter.CreateModule<F8DataManager>();
             FF8.Audio = ModuleCenter.CreateModule<AudioManager>();
             FF8.Tween = ModuleCenter.CreateModule<Tween>();
             FF8.UI = ModuleCenter.CreateModule<UIManager>();
-#if UNITY_WEBGL
-            yield return F8DataManager.Instance.LoadLocalizedStringsIEnumerator(); // WebGL专用
-#endif
+            yield return F8DataManager.Instance.LoadLocalizedStringsIEnumerator(); // 加载 LocalizedStrings 配置表，必须在 Localization 模块上面
             FF8.Local = ModuleCenter.CreateModule<Localization>();
             FF8.SDK = ModuleCenter.CreateModule<SDKManager>();
             FF8.Download = ModuleCenter.CreateModule<DownloadManager>();
             FF8.LogWriter = ModuleCenter.CreateModule<F8LogWriter>();
+            
+            yield return new WaitForEndOfFrame();
 
             // // 初始化本地版本
             // FF8.HotUpdate.InitLocalVersion();

@@ -6,6 +6,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 using F8Framework.Core;
 using UnityEngine.Scripting;
@@ -14,6 +15,7 @@ namespace F8Framework.F8ExcelDataClass
 {
 	public class F8DataManager : ModuleSingleton<F8DataManager>, IModule
 	{
+		public string VariantName { get; set; }
 		private Sheet1 p_Sheet1;
 		private Sheet2 p_Sheet2;
 		private item p_item;
@@ -151,6 +153,22 @@ namespace F8Framework.F8ExcelDataClass
 		}
 
 		[Preserve]
+		public async Task LoadAllAsyncTask()
+		{
+			await LoadAsyncTask<Sheet1>("Sheet1", result => p_Sheet1 = result as Sheet1);
+			await LoadAsyncTask<Sheet2>("Sheet2", result => p_Sheet2 = result as Sheet2);
+			await LoadAsyncTask<item>("item", result => p_item = result as item);
+			await LoadAsyncTask<LocalizedStrings>("LocalizedStrings", result => p_LocalizedStrings = result as LocalizedStrings);
+			await LoadAsyncTask<role>("role", result => p_role = result as role);
+#if UNITY_EDITOR
+			if (AssetManager.Instance.IsEditorMode)
+			{
+				ReadExcel.Instance.LoadAllExcelData();
+			}
+#endif
+		}
+
+		[Preserve]
 		public void LoadAllAsyncCallback(Action onLoadComplete = null)
 		{
 			Util.Unity.StartCoroutine(LoadAllAsyncIEnumerator(onLoadComplete));
@@ -182,7 +200,7 @@ namespace F8Framework.F8ExcelDataClass
 				return default(T);
 			}
 			AssetManager.Instance.Unload(name, false);
-			T obj = Util.LitJson.ToObject<T>(textAsset.text);
+			T obj = Util.BinarySerializer.Deserialize<T>(textAsset.bytes);
 			return obj;
 		}
 
@@ -195,7 +213,21 @@ namespace F8Framework.F8ExcelDataClass
 			if (textAsset != null)
 			{
 				AssetManager.Instance.Unload(name, false);
-				T obj = Util.LitJson.ToObject<T>(textAsset.text);
+				T obj = Util.BinarySerializer.Deserialize<T>(textAsset.bytes);
+				callback(obj);
+			}
+		}
+
+		[Preserve]
+		public async Task LoadAsyncTask<T>(string name, Action<T> callback)
+		{
+			BaseLoader load = AssetManager.Instance.LoadAsync<TextAsset>(name);
+			await load;
+			TextAsset textAsset = AssetManager.Instance.GetAssetObject<TextAsset>(name);
+			if (textAsset != null)
+			{
+				AssetManager.Instance.Unload(name, false);
+				T obj = Util.BinarySerializer.Deserialize<T>(textAsset.bytes);
 				callback(obj);
 			}
 		}
