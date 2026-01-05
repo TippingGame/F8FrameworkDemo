@@ -20,11 +20,11 @@ MonoBehaviour:
     boolValue: 0
     valueType: 1
   - key: LocalizationSettings
-    stringValue: 
+    stringValue: '{"DefaultLanguage":"ChineseSimplified","maxSuggestion":50,"enableTMP":false}'
     intValue: 0
     floatValue: 0
     boolValue: 0
-    valueType: 0
+    valueType: 1
   - key: compilationFinished
     stringValue: 
     intValue: 0
