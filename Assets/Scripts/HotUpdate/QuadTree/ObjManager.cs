@@ -50,11 +50,11 @@ namespace Demo
         {
             player.SetActive(true);
 
-            yield return FF8.Asset.LoadAsyncCoroutine<PoolsPreset>("PoolsPreset");
+            yield return FF8.Asset.LoadAsync<PoolsPreset>("PoolsPreset");
             FF8.GameObjectPool.InstallPools(FF8.Asset.GetAssetObject<PoolsPreset>("PoolsPreset"));
             
             tree = new Tree(bounds, true);
-            yield return FF8.Asset.LoadAsyncCoroutine<TextAsset>("QuadTreeData");
+            yield return FF8.Asset.LoadAsync<TextAsset>("QuadTreeData");
             string jsonStr = FF8.Asset.GetAssetObject<TextAsset>("QuadTreeData").text;
             jsonDatas = JsonUtility.FromJson<ObjDataContainer>(jsonStr).objDatas;
             for (int i = 0; i < jsonDatas.Length; i++)
