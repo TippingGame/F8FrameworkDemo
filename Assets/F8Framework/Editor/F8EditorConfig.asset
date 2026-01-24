@@ -109,3 +109,15 @@ MonoBehaviour:
     floatValue: 0
     boolValue: 0
     valueType: 1
+  - key: CustomToolbar.ToolbarFpsSlider.Value
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 0
+  - key: CustomToolbar.ToolbarTimeSlider.Value
+    stringValue: 
+    intValue: 0
+    floatValue: 1
+    boolValue: 0
+    valueType: 3
