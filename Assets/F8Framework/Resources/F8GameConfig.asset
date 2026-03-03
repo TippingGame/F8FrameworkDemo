@@ -12,4 +12,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 167b3ca544a8c7e4fb8761844ae7a261, type: 3}
   m_Name: F8GameConfig
   m_EditorClassIdentifier: 
-  entries: []
+  entries:
+  - key: AssetBundleOffset
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 2
+  - key: AssetBundleXorKey
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 2
+  - key: OptionalPackagePassword
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 1

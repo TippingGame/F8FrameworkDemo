@@ -15,7 +15,7 @@ namespace F8Framework.F8ExcelDataClass
 {
 	public class F8DataManager : ModuleSingleton<F8DataManager>, IModule
 	{
-		public string VariantName { get; set; }
+		public string VariantName;
 		private Sheet1 p_Sheet1;
 		private Sheet2 p_Sheet2;
 		private item p_item;
@@ -34,7 +34,9 @@ namespace F8Framework.F8ExcelDataClass
 		[Preserve]
 		public Dictionary<System.Int32, Sheet1Item> GetSheet1()
 		{
-			return p_Sheet1.Dict;
+			if (p_Sheet1 != null) return p_Sheet1.Dict;
+			LogF8.LogError("未加载配置表： Sheet1");
+			return null;
 		}
 
 		[Preserve]
@@ -49,7 +51,9 @@ namespace F8Framework.F8ExcelDataClass
 		[Preserve]
 		public Dictionary<System.Int32, Sheet2Item> GetSheet2()
 		{
-			return p_Sheet2.Dict;
+			if (p_Sheet2 != null) return p_Sheet2.Dict;
+			LogF8.LogError("未加载配置表： Sheet2");
+			return null;
 		}
 
 		[Preserve]
@@ -64,7 +68,9 @@ namespace F8Framework.F8ExcelDataClass
 		[Preserve]
 		public Dictionary<System.Int32, itemItem> Getitem()
 		{
-			return p_item.Dict;
+			if (p_item != null) return p_item.Dict;
+			LogF8.LogError("未加载配置表： item");
+			return null;
 		}
 
 		[Preserve]
@@ -79,7 +85,9 @@ namespace F8Framework.F8ExcelDataClass
 		[Preserve]
 		public Dictionary<System.Int32, LocalizedStringsItem> GetLocalizedStrings()
 		{
-			return p_LocalizedStrings.Dict;
+			if (p_LocalizedStrings != null) return p_LocalizedStrings.Dict;
+			LogF8.LogError("未加载配置表： LocalizedStrings");
+			return null;
 		}
 
 		[Preserve]
@@ -94,7 +102,9 @@ namespace F8Framework.F8ExcelDataClass
 		[Preserve]
 		public Dictionary<System.Int32, roleItem> Getrole()
 		{
-			return p_role.Dict;
+			if (p_role != null) return p_role.Dict;
+			LogF8.LogError("未加载配置表： role");
+			return null;
 		}
 
 		[Preserve]
@@ -127,8 +137,13 @@ namespace F8Framework.F8ExcelDataClass
 		}
 
 		[Preserve]
-		public void RuntimeLoadAll(Dictionary<String, System.Object> objs)
+		public void RuntimeLoadAll(Dictionary<String, System.Object> objs = null)
 		{
+			if (objs == null)
+			{
+				objs = new Dictionary<string, object>();
+				ReadExcel.Instance.LoadAllExcelData(objs);
+			}
 			p_Sheet1 = objs["Sheet1"] as Sheet1;
 			p_Sheet2 = objs["Sheet2"] as Sheet2;
 			p_item = objs["item"] as item;
@@ -147,7 +162,7 @@ namespace F8Framework.F8ExcelDataClass
 #if UNITY_EDITOR
 			if (AssetManager.Instance.IsEditorMode)
 			{
-				ReadExcel.Instance.LoadAllExcelData();
+				RuntimeLoadAll();
 			}
 #endif
 		}
@@ -163,7 +178,7 @@ namespace F8Framework.F8ExcelDataClass
 #if UNITY_EDITOR
 			if (AssetManager.Instance.IsEditorMode)
 			{
-				ReadExcel.Instance.LoadAllExcelData();
+				RuntimeLoadAll();
 			}
 #endif
 		}
@@ -185,7 +200,7 @@ namespace F8Framework.F8ExcelDataClass
 #if UNITY_EDITOR
 			if (AssetManager.Instance.IsEditorMode)
 			{
-				ReadExcel.Instance.LoadAllExcelData();
+				RuntimeLoadAll();
 			}
 #endif
 			onLoadComplete?.Invoke();

@@ -38,11 +38,11 @@ MonoBehaviour:
     boolValue: 0
     valueType: 1
   - key: ConvertExcelToOtherFormatsKey
-    stringValue: 
+    stringValue: binary
     intValue: 0
     floatValue: 0
     boolValue: 0
-    valueType: 0
+    valueType: 1
   - key: compilationFinishedHotUpdateDll
     stringValue: 
     intValue: 0
@@ -68,11 +68,11 @@ MonoBehaviour:
     boolValue: 0
     valueType: 0
   - key: ToVersionKey
-    stringValue: 
+    stringValue: 1.0.0
     intValue: 0
     floatValue: 0
     boolValue: 0
-    valueType: 0
+    valueType: 1
   - key: compilationFinishedBuildPkg
     stringValue: 
     intValue: 0
@@ -121,3 +121,75 @@ MonoBehaviour:
     floatValue: 1
     boolValue: 0
     valueType: 3
+  - key: PrefBuildPathKey
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 0
+  - key: ExportCurrentPlatformKey
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 0
+  - key: CodeVersionKey
+    stringValue: 1
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 1
+  - key: ExcelBinDataFolderKey
+    stringValue: Assets/AssetBundles/Config/BinConfigData
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 1
+  - key: AssetRemoteAddressKey
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 1
+  - key: EnableHotUpdateKey
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 0
+  - key: EnablePackageKey
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 0
+  - key: EnableFullPackageKey
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 0
+  - key: EnableOptionalPackageKey
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 0
+  - key: EnableNullPackageKey
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 0
+  - key: OptionalPackageKey
+    stringValue: 0_1_2_3
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 1
+  - key: CleanBuildCacheKey
+    stringValue: 
+    intValue: 0
+    floatValue: 0
+    boolValue: 0
+    valueType: 0
