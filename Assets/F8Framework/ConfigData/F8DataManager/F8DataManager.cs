@@ -269,6 +269,12 @@ namespace F8Framework.F8ExcelDataClass
 
 		public void OnTermination()
 		{
+			p_Sheet1 = null;
+			p_Sheet2 = null;
+			p_item = null;
+			p_LocalizedStrings = null;
+			p_role = null;
+			VariantName = null;
 			base.Destroy();
 		}
 	}

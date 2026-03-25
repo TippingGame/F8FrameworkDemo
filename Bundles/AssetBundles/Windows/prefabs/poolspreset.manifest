@@ -1,0 +1,25 @@
+ManifestFileVersion: 0
+CRC: 1714448417
+Hashes:
+  AssetFileHash:
+    serializedVersion: 2
+    Hash: 52750becc9fecf964e97062b3c2b85b3
+  TypeTreeHash:
+    serializedVersion: 2
+    Hash: 8cf1289b3b88c523cb29eb5734fea9ba
+HashAppended: 0
+ClassTypes:
+- Class: 1
+  Script: {instanceID: 0}
+- Class: 114
+  Script: {fileID: 11500000, guid: 1675ca1885e647e88c4e999d1164b08c, type: 3}
+- Class: 115
+  Script: {instanceID: 0}
+SerializeReferenceClassIdentifiers:
+- AssemblyName: F8Framework.Core
+  ClassName: F8Framework.Core.PoolPreset
+Assets:
+- Assets/AssetBundles/Prefabs/PoolsPreset.asset
+Dependencies:
+- G:/Work/unity2021315f1pj/F8FrameworkDemo/Bundles/AssetBundles/Windows/prefabs/tree_1
+- G:/Work/unity2021315f1pj/F8FrameworkDemo/Bundles/AssetBundles/Windows/prefabs/tree_2
