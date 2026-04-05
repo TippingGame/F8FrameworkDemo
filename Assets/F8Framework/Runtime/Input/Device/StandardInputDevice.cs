@@ -82,13 +82,14 @@ namespace F8Framework.Core
             RegisterVirtualButton(InputButtonType.MouseRight);
             RegisterVirtualButton(InputButtonType.MouseMiddle);
             RegisterVirtualButton(InputButtonType.MouseLeftDoubleClick);
-            RegisterVirtualButton(InputButtonType.EscClick);
 
             RegisterVirtualAxis(InputAxisType.MouseX);
             RegisterVirtualAxis(InputAxisType.MouseY);
             RegisterVirtualAxis(InputAxisType.MouseScrollWheel);
             RegisterVirtualAxis(InputAxisType.Horizontal);
+            RegisterVirtualAxis(InputAxisType.HorizontalRaw);
             RegisterVirtualAxis(InputAxisType.Vertical);
+            RegisterVirtualAxis(InputAxisType.VerticalRaw);
             RegisterVirtualAxis(InputAxisType.UpperLower);
         }
         
@@ -96,17 +97,6 @@ namespace F8Framework.Core
         {
 #if ENABLE_LEGACY_INPUT_MANAGER
             //标准PC平台：鼠标和键盘做为输入设备
-            if (Input.GetKeyDown(KeyCode.Escape))
-            {
-                SetButtonStart(InputButtonType.EscClick);
-                SetButtonDown(InputButtonType.EscClick);
-            }
-
-            if (Input.GetKeyUp(KeyCode.Escape))
-            {
-                SetButtonUp(InputButtonType.EscClick);
-            }
-            
             if (Input.GetMouseButtonDown(0))
             {
                 SetButtonStart(InputButtonType.MouseLeft);
@@ -192,13 +182,14 @@ namespace F8Framework.Core
             UnRegisterVirtualButton(InputButtonType.MouseRight);
             UnRegisterVirtualButton(InputButtonType.MouseMiddle);
             UnRegisterVirtualButton(InputButtonType.MouseLeftDoubleClick);
-            UnRegisterVirtualButton(InputButtonType.EscClick);
 
             UnRegisterVirtualAxis(InputAxisType.MouseX);
             UnRegisterVirtualAxis(InputAxisType.MouseY);
             UnRegisterVirtualAxis(InputAxisType.MouseScrollWheel);
             UnRegisterVirtualAxis(InputAxisType.Horizontal);
+            UnRegisterVirtualAxis(InputAxisType.HorizontalRaw);
             UnRegisterVirtualAxis(InputAxisType.Vertical);
+            UnRegisterVirtualAxis(InputAxisType.VerticalRaw);
             UnRegisterVirtualAxis(InputAxisType.UpperLower);
         }
     }
